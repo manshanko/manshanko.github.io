@@ -13,7 +13,7 @@
 }
 
 body {
-	background: silver;
+    background: silver;
     overflow: hidden;
 }
 
@@ -107,7 +107,13 @@ body {
 
 .select-difficulty {
     background: #FEFEFE;
-    margin: 0px;
+    margin: 0;
+    padding: 2px;
+}
+
+.select-platform {
+    background: #FEFEFE;
+    margin: 0;
     padding: 2px;
 }
 
