@@ -20,8 +20,8 @@ body {
 #SPA {
     display: grid;
     height: 100vh;
-	grid-template-columns: 160px auto;
-	grid-template-rows: 32px auto;
+    grid-template-columns: 160px auto;
+    grid-template-rows: 32px auto;
 }
 
 .tooltip {
@@ -37,46 +37,46 @@ body {
 }
 
 .js-button {
-	background: #D9D9D9;
-	border: 2px solid #333;
-	border-radius: 2px;
- 	padding: 4px;
-	margin: 4px;
+    background: #D9D9D9;
+    border: 2px solid #333;
+    border-radius: 2px;
+    padding: 4px;
+    margin: 4px;
 }
 
 .js-button:hover {
-	border-color: #2222AA;
+    border-color: #2222AA;
 }
 
 .js-button:active {
- 	background: #AA9;
+    background: #AA9;
 }
 
 .page-button {
- 	padding: 1px 2px 0px 2px;
-	margin: 0px 4px 0px 0px;
+    padding: 1px 2px 0px 2px;
+    margin: 0px 4px 0px 0px;
 }
 
 .dropdown {
-	border: 1px solid #333;
-	border-radius: 2px;
+    border: 1px solid #333;
+    border-radius: 2px;
 }
 
 .header {
-	position: absolute;
+    position: absolute;
     display: flex;
     height: 32px;
-	width: 100%;
+    width: 100%;
     padding: 4px;
     background: linear-gradient(180deg, #444444, #555555);
-	box-shadow: 0 .25px 12px 0 black;
+    box-shadow: 0 .25px 12px 0 black;
 }
 
 .header-dummy {
-	width: 100%;
-	display: block;
-	content: "a";
-	color: rgba(0,0,0,0);
+    width: 100%;
+    display: block;
+    content: "a";
+    color: rgba(0,0,0,0);
     height: 32px;
     grid-row: 1 / 2;
     grid-column: 1 / 3;
@@ -90,6 +90,13 @@ body {
     margin-left: auto;
     padding: 4px;
     border-radius: 2px;
+}
+
+.community-link {
+    margin-top: auto;
+    padding: 2px 2px 4px 2px;
+    background: #EEE;
+    text-align: center;
 }
 
 .input-power-level {
@@ -119,8 +126,8 @@ body {
 }
 
 .attack-page > div {
-	text-align: center;
-	font-size: 30px;
+    text-align: center;
+    font-size: 30px;
 }
 
 .weapon-page {
@@ -130,22 +137,24 @@ body {
 }
 
 .weapon-page > div {
-	text-align: center;
-	font-size: 30px;
+    text-align: center;
+    font-size: 30px;
 }
 
 .sidebar {
-	background-image: linear-gradient(170deg, #808080, #999 1500px);
- 	grid-column: 1 / 2;
- 	grid-row: 2 / 3;
+    background-image: linear-gradient(170deg, #808080, #999 1500px);
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }
 
 #sidebar {
     display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 40px 40px 40px auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 40px 40px 40px auto;
     padding: 0px;
-	background: gray;
+    background: gray;
 }
 
 .dropdown-button > div{
@@ -171,7 +180,7 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    top: 200px;
+    top: 140px;
 }
 
 .build-modal {
@@ -184,7 +193,7 @@ body {
     border-radius: 8px;
     margin: auto;
     padding: 4px;
-	box-shadow: 1px 1px 6px 0 black;
+    box-shadow: 1px 1px 6px 0 black;
     z-index: 1;
 }
 
@@ -197,8 +206,8 @@ body {
     width: 180px;
 }
 .select-career {
-	width: 100%;
-	margin-bottom: 4px;
+    width: 100%;
+    margin-bottom: 4px;
 }
 
 .select-weapon {
@@ -293,16 +302,16 @@ body {
 }
 
 .select-character {
-	width: 100%;
+    width: 100%;
     height: 40px;
-	margin-bottom: 4px;
+    margin-bottom: 4px;
 }
 
 .attack-plate {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-	height: calc(100vh - 32px);
+    height: calc(100vh - 32px);
     background: #A08A60;
     padding: 4px;
 }
@@ -391,19 +400,19 @@ body {
 }*/
 
 .weapon-list-holder {
-	position: absolute;
-	background: #6688AA;
-	margin: auto;
-	left: 0;
-	right: 0;
-	width: 365px;
-	padding: 4px;
+    position: absolute;
+    background: #6688AA;
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: 365px;
+    padding: 4px;
     z-index: 2;
 }
 
 .weapon-list-container {
-	height: calc(100vh - 8px);
-	overflow-y: scroll;
+    height: calc(100vh - 8px);
+    overflow-y: scroll;
 }
 
 .weapon-list {
@@ -413,8 +422,8 @@ body {
 }
 
 .weapon-attacks-container {
-	overflow: auto;
-	height: calc(100vh - 32px);
+    overflow: auto;
+    height: calc(100vh - 32px);
     grid-row: 1 / 3;
 }
 
@@ -456,8 +465,8 @@ body {
 }
 
 .weapon-name {
-	padding-left: 3px;
-	padding-right: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
     font-size: 25px;
     background: #EFEFEF;
 }
@@ -487,9 +496,17 @@ body {
 
 .chain-attack-header {
     background: linear-gradient(100deg, #D9D9D9, #D4DBD4);
+    display: flex;
+    flex-direction: column;
     border-radius: 4px 4px 0 0;
     padding: 2px;
     margin: 2px;
+    text-align: center;
+}
+
+.select-headshot-percent {
+    width: 80px;
+    margin: auto;
 }
 
 .chain-attack-select {
@@ -502,9 +519,9 @@ body {
 .weapon-plate {
 /*    display: flex;
     display: grid;
-	grid-template-columns: var(--attack-stats-width) auto;
-	grid-template-rows: auto auto;
-	grid-template-columns: auto 340px;
+    grid-template-columns: var(--attack-stats-width) auto;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto 340px;
     flex: 0;
     flex-direction: column;
     grid-row: 1 / 3; */
@@ -512,7 +529,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-	height: calc(100vh - 32px);
+    height: calc(100vh - 32px);
     background: #886644;
     padding: 4px;
 }
@@ -527,8 +544,8 @@ body {
 .weapon-title {
     background-image:
         linear-gradient(178deg, #EEE, #AAA);
-	padding-left: 3px;
-	padding-right: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
     font-size: 25px;
     border-radius: 4px 4px 0 0;
 }
@@ -552,36 +569,29 @@ body {
 
 .attack-header {
     display: flex;
-    flex-direction: row;
     background-image: linear-gradient(0deg, #AA7733 50%, transparent 50%);
 }
 
 .weapon-attack-name {
     background: #BBBB66;
     border-radius: 8px 0 8px 0;
-    width: 160px;
     margin: 0;
     font-size: 16px;
+    flex-basis: 90%;
 }
 
 .attack-speed {
-    display: flex;
-    flex-direction: row;
     background: #AA7733;
     border-radius: 8px 0 0 0;
-    width: 160px;
+    margin-left: auto;
+    right: 0;
+    width: 40px;
 }
 
-.attack-speed > div {
+.svg-attack-speed {
     font-size: 18px;
-    width: 50%;
     padding: 2px;
-}
-
-.svg-attack-parent {
-}
-
-.svg-attack-child {
+    width: 36px;
 }
 
 .attack-modifiers {
