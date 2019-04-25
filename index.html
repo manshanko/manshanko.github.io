@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Vermintools</title>
+		<link rel="stylesheet" href="format.css">
+        <script src="frontend.js"></script>
+	</head>
+	<body>
+        <div style="display: none">
+            <defs>
+                <svg id="svg-attack-parent">
+                    <svg>
+                        <rect width="24" height="24" fill="rgb(0,0,255)" stroke-width="3" stroke="rgb(60,0,0)"/>
+                    </svg>
+                </svg>
+                <svg id="svg-attack-child">
+                    <svg>
+                        <rect width="24" height="24" fill="rgb(0,255,0)" stroke-width="3" stroke="rgb(60,0,0)"/>
+                    </svg>
+                </svg>
+            </defs>
+        </div>
+        <div class="tooltip" style="display: none"></div>
+        <div class="build-modal-container hide">
+            <div class="build-modal">
+                <div class="career-and-gear">
+    				<select class="select-career dropdown" onchange="">
+                        <option selected disabled hidden>Career</option>
+                    </select>
+    				<div class="item-container">
+                    </div>
+                </div>
+                <div class="talent-tree"></div>
+                <div class="buff-container"></div>
+            </div>
+        </div>
+        <div class="weapon-list-holder hide">
+			<div class="weapon-list-container">
+				<div class="weapon-list">
+				</div>
+			</div>
+        </div>
+        <div id="SPA">
+    		<div class="header">
+                <div class="select-page js-button page-button" data-slot="attack-page">Attack Combo</div>
+                <div class="select-page js-button page-button" data-slot="weapon-page">Weapon Stats</div>
+                <input class="input-power-level js-button" type="number" step="1" min="15" max="600">
+                <select class="select-difficulty js-button"></select>
+                <div class="build-number"></div>
+            </div>
+			<div class="header-dummy"></div>
+            <div class="sidebar">
+				<div class="build-button js-button">Build</div>
+                <div class="test-button js-button" onclick="console.log(data)">Click me!</div>
+                <div class="chain-attack-container">
+                    <div class="chain-attack-header js-button">Chain Options</div>
+                </div>
+            </div>
+            <div>
+        	    <div class="attack-page main-page">
+					<div class="attack-plate">
+                        <div class="attack-combo hide">
+                            Attack Combo
+                        </div>
+                        <div class="weapon-breakpoints">
+                        </div>
+                        <div class="weapon-breakpoints hide">
+                        </div>
+					</div>
+        		</div>
+                <div class="weapon-page main-page hide">
+                    <div class="weapon-plate">
+                        <div class="weapon-attacks" data-weapon-slot="0">
+                            <div class="weapon-title">
+                                Weapon 1
+                            </div>
+                            <div class="attacks-container">
+                                <div class="attack hide">
+                                    <div class="attack-header">
+                                        <div class="weapon-attack-name">Tester</div>
+                                        <div class="attack-speed">
+                                            <div class="svg-attack-parent">
+                                                <svg width="24" height="24">
+                                                    <use xlink:href="#svg-attack-parent" href="#svg-attack-parent"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="svg-attack-child">
+                                                <svg width="24" height="24">
+                                                    <use xlink:href="#svg-attack-child" href="#svg-attack-child"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="attack-modifiers"></div>
+                                    <div class="damage-table">
+                                        <div class="infantry neither">
+                                            NA
+                                        </div>
+                                        <div class="infantry headshot">
+                                            NA
+                                        </div>
+                                        <div class="infantry critical">
+                                            NA
+                                        </div>
+                                        <div class="infantry both">
+                                            NA
+                                        </div>
+                                        <div class="armored neither">
+                                            NA
+                                        </div>
+                                        <div class="armored headshot">
+                                            NA
+                                        </div>
+                                        <div class="armored critical">
+                                            NA
+                                        </div>
+                                        <div class="armored both">
+                                            NA
+                                        </div>
+                                        <div class="monster neither">
+                                            NA
+                                        </div>
+                                        <div class="monster headshot">
+                                            NA
+                                        </div>
+                                        <div class="monster critical">
+                                            NA
+                                        </div>
+                                        <div class="monster both">
+                                            NA
+                                        </div>
+                                        <div class="berserker neither">
+                                            NA
+                                        </div>
+                                        <div class="berserker headshot">
+                                            NA
+                                        </div>
+                                        <div class="berserker critical">
+                                            NA
+                                        </div>
+                                        <div class="berserker both">
+                                            NA
+                                        </div>
+                                        <div class="superarmored neither">
+                                            NA
+                                        </div>
+                                        <div class="superarmored headshot">
+                                            NA
+                                        </div>
+                                        <div class="superarmored critical">
+                                            NA
+                                        </div>
+                                        <div class="superarmored both">
+                                            NA
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weapon-attacks" data-weapon-slot="1">
+                            <div class="weapon-title">
+                                Weapon 2
+                            </div>
+                            <div class="attacks-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <template id="TEMPLATE-CHAIN">
+            <div class="chain-attack-select js-button">
+        		<select class="chain-attack-dropdown">
+                    <option selected disabled hidden>Next Attack</option>
+                </select>
+            </div>
+        </template>
+	</body>
+	<script src="data.js"></script>
+</html>
