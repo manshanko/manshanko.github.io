@@ -32,6 +32,7 @@ body {
     z-index: 6;
     padding: 3px;
     background-image: linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
+    background-image: -moz-linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
     border-radius: 2px 6px 6px 6px;
     box-shadow: 2px 2px 6px 0 #000000AA;
 }
@@ -69,6 +70,7 @@ body {
     width: 100%;
     padding: 4px;
     background: linear-gradient(180deg, #444444, #555555);
+    background: -moz-linear-gradient(180deg, #444444, #555555);
     box-shadow: 0 .25px 12px 0 black;
 }
 
@@ -149,6 +151,7 @@ body {
 
 .sidebar {
     background-image: linear-gradient(170deg, #808080, #999 1500px);
+    background-image: -moz-linear-gradient(170deg, #808080, #999 1500px);
     display: flex;
     flex-direction: column;
     grid-column: 1 / 2;
@@ -189,6 +192,10 @@ body {
     top: 140px;
 }
 
+.build-modal-wrapper {
+    margin: 0 auto 0 auto;
+}
+
 .build-modal {
     position: relative;
     display: flex;
@@ -201,6 +208,14 @@ body {
     padding: 4px;
     box-shadow: 1px 1px 6px 0 black;
     z-index: 1;
+}
+
+.build-modal-close {
+    position: absolute;
+    left: -4096px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .career-and-gear {
@@ -238,6 +253,7 @@ body {
     border-radius: 4px;
     padding: 2px;
     margin: 2px 0px 2px 0px;
+    text-align: center;
 }
 
 .item-property {
@@ -275,6 +291,10 @@ body {
     background: #AAE;
 }
 
+.not-active-talent {
+    background: #AAA;
+}
+
 .buff-container {
     display: flex;
     flex-direction: column;
@@ -303,10 +323,6 @@ body {
 
 }
 
-.not-active-talent {
-    background: #AAA;
-}
-
 .select-character {
     width: 100%;
     height: 40px;
@@ -324,9 +340,15 @@ body {
 
 .attack-combo {
     background: silver;
-    width: 968px;
-    min-height: 50px;
+    max-width: 968px;
     border-radius: 20px 20px 4px 4px;
+    margin: 4px;
+}
+
+.weapon-breakpoints-container {
+    background: #AAA;
+    border-radius: 4px;
+    max-width: 976px;
     margin: 4px;
 }
 
@@ -335,6 +357,26 @@ body {
     width: 968px;
     border-radius: 4px;
     margin: 4px;
+}
+
+.weapon-breakpoints-attacks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.weapon-name {
+    background: linear-gradient(135deg, #FFF, #DDD);
+    background: -moz-linear-gradient(135deg, #FFF, #DDD);
+    border-radius: 4px;
+    margin: 0;
+}
+
+.weapon-attack {
+    flex-basis: 30%;
+    font-size: 20px;
+    padding: 4px;
+    margin: 2px auto 2px auto;
 }
 
 .breakpoint-plate {
@@ -346,6 +388,7 @@ body {
     margin: 2px;
     max-width: 964px;
     background: linear-gradient(215deg, #A97, #654);
+    background: -moz-linear-gradient(215deg, #A97, #654);
 }
 
 .mob-name {
@@ -370,6 +413,7 @@ body {
 
 .combo-damage-box > div {
     background-image: linear-gradient(45deg, #CBA8, #4564);
+    background-image: -moz-linear-gradient(45deg, #CBA8, #4564);
     padding: 0px 6px 0px 6px;
     width: 64px;
     border: 1px solid #222;
@@ -394,6 +438,7 @@ body {
     flex-direction: row;
     width: 240px;
     background: linear-gradient(45deg, #BBB, #AA000055);
+    background: -moz-linear-gradient(45deg, #BBB, #AA000055);
     font-size: 14px;
 }
 .breakpoint-row > div {
@@ -452,7 +497,7 @@ body {
 .weapon-header > div {
 }
 
-.weapon-header > .weapon-name {
+.weapon-header > .weapon-list-weapon-name {
     padding: 0px 0px 0px 4px;
 }
 
@@ -470,7 +515,7 @@ body {
     background: #2222AA
 }
 
-.weapon-name {
+.weapon-list-weapon-name {
     padding-left: 3px;
     padding-right: 3px;
     font-size: 25px;
@@ -502,6 +547,7 @@ body {
 
 .chain-attack-header {
     background: linear-gradient(100deg, #D9D9D9, #D4DBD4);
+    background: -moz-linear-gradient(100deg, #D9D9D9, #D4DBD4);
     display: flex;
     flex-direction: column;
     border-radius: 4px 4px 0 0;
@@ -548,8 +594,8 @@ body {
 }
 
 .weapon-title {
-    background-image:
-        linear-gradient(178deg, #EEE, #AAA);
+    background-image: linear-gradient(178deg, #EEE, #AAA);
+    background-image: -moz-linear-gradient(178deg, #EEE, #AAA);
     padding-left: 3px;
     padding-right: 3px;
     font-size: 25px;
@@ -576,6 +622,7 @@ body {
 .attack-header {
     display: flex;
     background-image: linear-gradient(0deg, #AA7733 50%, transparent 50%);
+    background-image: -moz-linear-gradient(0deg, #AA7733 50%, transparent 50%);
 }
 
 .weapon-attack-name {
@@ -666,18 +713,22 @@ body {
 
 .neither {
     background-image: linear-gradient(0deg, #FFF3, #FFF1);
+    background-image: -moz-linear-gradient(0deg, #FFF3, #FFF1);
 }
 
 .headshot {
     background-image: linear-gradient(0deg, #FF03, #FF01);
+    background-image: -moz-linear-gradient(0deg, #FF03, #FF01);
 }
 
 .critical {
     background-image: linear-gradient(0deg, #F003, #F001);
+    background-image: -moz-linear-gradient(0deg, #F003, #F001);
 }
 
 .both {
     background-image: linear-gradient(0deg, #00F3, #00F1);
+    background-image: -moz-linear-gradient(0deg, #00F3, #00F1);
 }
 
 .damage-change {
@@ -690,16 +741,60 @@ body {
     100% {border: 1px solid #222}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
+    option {
+        padding: 0;
+    }
+
+    .build-number {
+        position: absolute;
+        left: -4096px;
+        height: 0px;
+        margin: 0px;
+        padding: 0px;
+    }
+
     .build-modal-container {
+        max-width: 1000px;
+        max-height: 100vh;
         top: 0;
     }
 
     .build-modal {
+        display: flex;
         flex-direction: column;
-        max-height: 100%;
+        flex-wrap: nowrap;
+    }
+
+    .build-modal-wrapper {
         overflow: auto;
         overflow-x: hidden;
+    }
+
+    .attack-combo {
+        max-width: 488px;
+    }
+
+    .weapon-breakpoints-container {
+        max-width: 488px;
+    }
+
+    .weapon-breakpoints {
+        max-width: 488px;
+        margin: auto 0 0 0;
+    }
+
+    .build-modal-close {
+        position: relative;
+        background: #4A4;
+        border-radius: 4px;
+        left: auto;
+        height: 120px;
+        line-height: 120px;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        font-size: 28px;
     }
 
     .career-and-gear {
@@ -709,16 +804,26 @@ body {
 
     .select-career {
         flex-basis: 100%;
+        height: 40px;
+        font-size: 24px;
     }
 
     .item-container {
-        margin: auto;
-        max-width: 200px;
+        margin: 8px auto 8px auto;
+        max-width: 280px;
+    }
+
+    .item-container > select {
+        height: 25px;
     }
 
     .item-weapon {
-        flex-basis: 46%;
+        flex-basis: 40%;
         max-width: 300px;
+    }
+
+    .select-weapon {
+        height: 30px;
     }
 
     .talent-row {

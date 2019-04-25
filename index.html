@@ -3,10 +3,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?52">
-        <script src="frontend.js?52"></script>
+        <link rel="stylesheet" href="format.css?53">
+        <script src="frontend.js?53"></script>
     </head>
     <body>
         <div style="display: none">
@@ -20,16 +20,19 @@
         </div>
         <div class="tooltip" style="display: none"></div>
         <div class="build-modal-container hide">
-            <div class="build-modal">
-                <div class="career-and-gear">
-                    <select class="select-career dropdown">
-                        <option selected disabled hidden>career</option>
-                    </select>
-                    <div class="item-container">
+            <div class="build-modal-wrapper">
+                <div class="build-modal">
+                    <div class="career-and-gear">
+                        <select class="select-career dropdown">
+                            <option selected disabled hidden>Career</option>
+                        </select>
+                        <div class="item-container">
+                        </div>
                     </div>
+                    <div class="talent-tree"></div>
+                    <div class="buff-container"></div>
+                    <div class="build-modal-close">Close</div>
                 </div>
-                <div class="talent-tree"></div>
-                <div class="buff-container"></div>
             </div>
         </div>
         <div class="weapon-list-holder hide">
@@ -69,9 +72,15 @@
                         <div class="attack-combo hide">
                             Attack Combo
                         </div>
-                        <div class="weapon-breakpoints hide">
+                        <div class="weapon-breakpoints-container hide">
+                            <div class="weapon-name js-button"></div>
+                            <div class="weapon-breakpoints-attacks"></div>
+                            <div class="weapon-breakpoints hide"></div>
                         </div>
-                        <div class="weapon-breakpoints hide">
+                        <div class="weapon-breakpoints-container hide">
+                            <div class="weapon-name js-button"></div>
+                            <div class="weapon-breakpoints-attacks"></div>
+                            <div class="weapon-breakpoints hide"></div>
                         </div>
                     </div>
                 </div>
@@ -178,5 +187,5 @@
             </div>
         </template>
     </body>
-    <script src="data.js?52"></script>
+    <script src="data.js?53"></script>
 </html>
