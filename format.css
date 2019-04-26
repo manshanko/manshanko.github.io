@@ -2,8 +2,6 @@
     --weapon-list-width: 640px;
     --attack-stats-width: calc(( var(--weapon-list-width) / 2) + ( var(--weapon-list-width) * (1/3)));
     --weapon-list-damage-segments: calc(var(--weapon-list-width) / 12);
-    --damage-table-height: 145px;
-    --build-modal-top-offset: 82px;
 }
 
 *{
@@ -21,7 +19,7 @@ body {
     display: grid;
     height: 100vh;
     grid-template-columns: 160px auto;
-    grid-template-rows: 32px auto;
+    grid-template-rows: 48px auto;
 }
 
 .tooltip {
@@ -33,45 +31,53 @@ body {
     padding: 3px;
     background-image: linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
     background-image: -moz-linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
+    border: 2px solid black;
     border-radius: 2px 6px 6px 6px;
     box-shadow: 2px 2px 6px 0 #000000AA;
 }
 
 .js-button {
-    background: #D9D9D9;
-    border: 2px solid #333;
-    border-radius: 2px;
-    padding: 4px;
-    margin: 4px;
+    background: #333;
+    color: #DDD;
+    border: 2px solid #222;
+    border-radius: 4px;
+    padding: 6px;
 }
-
 .js-button:hover {
     border-color: #2222AA;
 }
-
 .js-button:active {
-    background: #AA9;
+    background: #555;
 }
 
-.page-button {
-    padding: 1px 2px 0px 2px;
-    margin: 0px 4px 0px 0px;
+.js-input {
+    background: #CCC;
+    height: 20px;
+    line-height: 48px;
+    padding: 0;
 }
 
-.dropdown {
-    border: 1px solid #333;
-    border-radius: 2px;
+.select-page {
 }
 
 .header {
     position: absolute;
     display: flex;
-    height: 32px;
+    justify-content: center;
+    height: 48px;
     width: 100%;
     padding: 4px;
-    background: linear-gradient(180deg, #444444, #555555);
-    background: -moz-linear-gradient(180deg, #444444, #555555);
+    background: linear-gradient(180deg, #333, #444);
+    background: -moz-linear-gradient(180deg, #333, #444);
     box-shadow: 0 .25px 12px 0 black;
+}
+.header > .js-button {
+    height: 34px;
+    margin: 4px;
+}
+.header > input,
+.header > select {
+    margin: auto 4px;
 }
 
 .header-dummy {
@@ -79,7 +85,7 @@ body {
     display: block;
     content: "a";
     color: rgba(0,0,0,0);
-    height: 32px;
+    height: 48px;
     grid-row: 1 / 2;
     grid-column: 1 / 3;
 }
@@ -88,8 +94,8 @@ body {
 }
 
 .build-number {
-    background: #A9A9A9;
-    margin-left: auto;
+    background: #EEE6;
+    margin: auto 4px auto auto;
     padding: 4px;
     border-radius: 2px;
 }
@@ -97,26 +103,18 @@ body {
 .community-link {
     margin-top: auto;
     padding: 2px 2px 4px 2px;
-    background: #EEE;
+    background: #EEE4;
     text-align: center;
 }
 
 .input-power-level {
-    background: #FEFEFE;
-    margin: 0px;
-    padding: 4px;
+    padding: 2px 0 0 2px;
 }
 
 .select-difficulty {
-    background: #FEFEFE;
-    margin: 0;
-    padding: 2px;
 }
 
 .select-platform {
-    background: #FEFEFE;
-    margin: 0;
-    padding: 2px;
 }
 
 .hide-page {
@@ -150,20 +148,16 @@ body {
 }
 
 .sidebar {
-    background-image: linear-gradient(170deg, #808080, #999 1500px);
-    background-image: -moz-linear-gradient(170deg, #808080, #999 1500px);
+    background-image: linear-gradient(170deg, #555, #666 1500px);
+    background-image: -moz-linear-gradient(170deg, #555, #666 1500px);
     display: flex;
     flex-direction: column;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
 }
 
-#sidebar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 40px 40px 40px auto;
-    padding: 0px;
-    background: gray;
+.sidebar > div:not(.community-link) {
+    margin: 4px;
 }
 
 .dropdown-button > div{
@@ -182,6 +176,9 @@ body {
 
 .build-button {
     text-align: center;
+    font-size: 24px;
+    height: 40px;
+    padding: 4px;
 }
 
 .build-modal-container {
@@ -201,7 +198,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background: #92888F;
+    background: #555;
     border: 2px solid #222;
     border-radius: 8px;
     margin: auto;
@@ -226,34 +223,35 @@ body {
 .career-and-gear > div {
     width: 180px;
 }
+
 .select-career {
     width: 100%;
     margin-bottom: 4px;
 }
 
-.select-weapon {
-    background: #FCFCFC;
-    top: -82px;
-    height: 30px;
-}
-
-.select-property {
-    width: calc( 100% - 4px);
-    margin: 1px 2px 2px 2px;
-}
-
-.select-trait {
-    width: calc( 100% - 4px);
-    margin: 4px 2px 2px 2px;
-}
-
 .item-container {
-    background: #D2CCCF;
+    background: #888;
     border: 1px solid #222;
     border-radius: 4px;
     padding: 2px;
     margin: 2px 0px 2px 0px;
     text-align: center;
+}
+
+.item-container > select {
+    margin: 2px;
+    width: calc( 100% - 4px);
+    text-align: center;
+}
+.item-container > .select-weapon {
+    height: 30px;
+    line-height: 15px;
+}
+.item-container > .select-property {
+    margin-top: 1px;
+}
+.item-container > .select-trait {
+    margin-top: 4px;
 }
 
 .item-property {
@@ -265,6 +263,7 @@ body {
 }
 
 .talent-row {
+    background: #777;
     display: flex;
     flex-direction: row;
     border: 2px solid #222;
@@ -274,9 +273,6 @@ body {
 }
 
 .talent {
-    background: #EEE;
-    border: 2px solid #222;
-    border-radius: 4px;
     height: 64px;
     width: 180px;
     margin: 2px;
@@ -284,15 +280,10 @@ body {
     font-size: 16px;
     word-wrap: break-word;
 }
-.talent:hover {
-    border-color: #2222AA;
-}
-.talent:active {
-    background: #AAE;
-}
 
 .not-active-talent {
-    background: #AAA;
+    background: #666;
+    color: #AAA;
 }
 
 .buff-container {
@@ -309,18 +300,18 @@ body {
     flex-direction: column;
     margin: 2px;
     padding: 4px;
+    max-width: 232px;
 }
 
 .buff-name {
-    font-size: 18px;
+    font-size: 16px;
+    word-wrap: break-word;
 }
 
 .buff-toggle {
-
 }
 
 .buff-input {
-
 }
 
 .select-character {
@@ -333,20 +324,20 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: calc(100vh - 32px);
-    background: #A08A60;
+    height: calc(100vh - 48px);
+    background: #222;
     padding: 4px;
 }
 
 .attack-combo {
-    background: silver;
+    background: #777;
     max-width: 968px;
-    border-radius: 20px 20px 4px 4px;
+    border-radius: 4px;
     margin: 4px;
 }
 
 .weapon-breakpoints-container {
-    background: #AAA;
+    background: #777;
     border-radius: 4px;
     max-width: 976px;
     margin: 4px;
@@ -366,10 +357,9 @@ body {
 }
 
 .weapon-name {
-    background: linear-gradient(135deg, #FFF, #DDD);
-    background: -moz-linear-gradient(135deg, #FFF, #DDD);
     border-radius: 4px;
-    margin: 0;
+    margin: 4px;
+    padding: 4px;
 }
 
 .weapon-attack {
@@ -380,6 +370,7 @@ body {
 }
 
 .breakpoint-plate {
+    background: #444;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -387,11 +378,11 @@ body {
     border: 2px solid black;
     margin: 2px;
     max-width: 964px;
-    background: linear-gradient(215deg, #A97, #654);
-    background: -moz-linear-gradient(215deg, #A97, #654);
 }
 
 .mob-name {
+    border: 0 solid black;
+    border-width: 2px 1px 0 1px;
     background: #888;
     font-size: 16px;
 }
@@ -437,8 +428,6 @@ body {
     display: flex;
     flex-direction: row;
     width: 240px;
-    background: linear-gradient(45deg, #BBB, #AA000055);
-    background: -moz-linear-gradient(45deg, #BBB, #AA000055);
     font-size: 14px;
 }
 .breakpoint-row > div {
@@ -452,7 +441,7 @@ body {
 
 .weapon-list-holder {
     position: absolute;
-    background: #6688AA;
+    background: #666;
     margin: auto;
     left: 0;
     right: 0;
@@ -474,7 +463,7 @@ body {
 
 .weapon-attacks-container {
     overflow: auto;
-    height: calc(100vh - 32px);
+    height: calc(100vh - 48px);
     grid-row: 1 / 3;
 }
 
@@ -494,15 +483,7 @@ body {
     flex-direction: row;
 }
 
-.weapon-header > div {
-}
-
-.weapon-header > .weapon-list-weapon-name {
-    padding: 0px 0px 0px 4px;
-}
-
 .weapon-holder {
-/*    display: inline-block;        not using atm */
     float: left;
     width: 320px;
     margin: 0px 6px 4px 6px;
@@ -516,10 +497,9 @@ body {
 }
 
 .weapon-list-weapon-name {
-    padding-left: 3px;
-    padding-right: 3px;
+    padding: 2px;
+    margin: 4px;
     font-size: 25px;
-    background: #EFEFEF;
 }
 
 .weapon-damage {
@@ -539,20 +519,22 @@ body {
 }
 
 .chain-attack-container {
-    background: #4444;
     border: 2px dotted black;
     border-radius: 8px;
     margin: 4px;
 }
+.chain-attack-container > * {
+    margin: 4px;
+}
 
 .chain-attack-header {
-    background: linear-gradient(100deg, #D9D9D9, #D4DBD4);
-    background: -moz-linear-gradient(100deg, #D9D9D9, #D4DBD4);
+    background: #333;
+    color: #BBB;
     display: flex;
     flex-direction: column;
-    border-radius: 4px 4px 0 0;
-    padding: 2px;
-    margin: 2px;
+    border-radius: 4px;
+    height: 54px;
+    padding: 4px;
     text-align: center;
 }
 
@@ -569,20 +551,11 @@ body {
 }
 
 .weapon-plate {
-/*    display: flex;
-    display: grid;
-    grid-template-columns: var(--attack-stats-width) auto;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto 340px;
-    flex: 0;
-    flex-direction: column;
-    grid-row: 1 / 3; */
-
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: calc(100vh - 32px);
-    background: #886644;
+    height: calc(100vh - 48px);
+    background: #222;
     padding: 4px;
 }
 
@@ -681,23 +654,23 @@ body {
 }
 
 .infantry {
-    background: #DFBC89;
+    background: #DFBC89AA;
 }
 
 .armored {
-    background: #CF4C39;
+    background: #CF4C39AA;
 }
 
 .monster {
-    background: #4FBFC9;
+    background: #4FBFC9AA;
 }
 
 .berserker {
-    background: #4FCC49;
+    background: #4FCC49AA;
 }
 
 .superarmored {
-    background: #CF4CC9;
+    background: #CF4CC9AA;
 }
 
 .neither,
@@ -712,23 +685,23 @@ body {
 }
 
 .neither {
-    background-image: linear-gradient(0deg, #FFF3, #FFF1);
-    background-image: -moz-linear-gradient(0deg, #FFF3, #FFF1);
+    background-image: linear-gradient(-45deg, #8883, #FFF1);
+    background-image: -moz-linear-gradient(-45deg, #FFF3, #FFF1);
 }
 
 .headshot {
-    background-image: linear-gradient(0deg, #FF03, #FF01);
-    background-image: -moz-linear-gradient(0deg, #FF03, #FF01);
+    background-image: linear-gradient(-45deg, #8803, #FF01);
+    background-image: -moz-linear-gradient(-45deg, #FF03, #FF01);
 }
 
 .critical {
-    background-image: linear-gradient(0deg, #F003, #F001);
-    background-image: -moz-linear-gradient(0deg, #F003, #F001);
+    background-image: linear-gradient(-45deg, #8003, #F001);
+    background-image: -moz-linear-gradient(-45deg, #F003, #F001);
 }
 
 .both {
-    background-image: linear-gradient(0deg, #00F3, #00F1);
-    background-image: -moz-linear-gradient(0deg, #00F3, #00F1);
+    background-image: linear-gradient(-45deg, #0083, #00F1);
+    background-image: -moz-linear-gradient(-45deg, #00A3, #00F1);
 }
 
 .damage-change {

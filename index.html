@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?53">
-        <script src="frontend.js?53"></script>
+        <link rel="stylesheet" href="format.css?54">
+        <script src="frontend.js?54"></script>
     </head>
     <body>
         <div style="display: none">
@@ -23,7 +23,7 @@
             <div class="build-modal-wrapper">
                 <div class="build-modal">
                     <div class="career-and-gear">
-                        <select class="select-career dropdown">
+                        <select class="select-career js-input">
                             <option selected disabled hidden>Career</option>
                         </select>
                         <div class="item-container">
@@ -45,9 +45,9 @@
             <div class="header">
                 <div class="select-page js-button page-button" data-slot="attack-page">Attack Combo</div>
                 <div class="select-page js-button page-button" data-slot="weapon-page">Weapon Stats</div>
-                <input class="input-power-level js-button" type="number" step="1" min="15" max="600">
-                <select class="select-difficulty js-button"></select>
-                <select class="select-platform js-button">
+                <input class="input-power-level js-input" type="number" step="1" min="15" max="600">
+                <select class="select-difficulty js-input"></select>
+                <select class="select-platform js-input">
                     <option value="pc" selected>PC</option>
                     <option value="console">Console</option>
                 </select>
@@ -57,9 +57,9 @@
             <div class="sidebar">
                 <div class="build-button js-button">Build</div>
                 <div class="chain-attack-container">
-                    <div class="chain-attack-header js-button">
+                    <div class="chain-attack-header">
                         Headshot %
-                        <input class="select-headshot-percent" type="number" step="1" min="0" max="100">
+                        <input class="select-headshot-percent js-input" type="number" step="1" min="0" max="100">
                     </div>
                 </div>
                 <div class="community-link">
@@ -181,11 +181,11 @@
         </div>
         <template id="TEMPLATE-CHAIN">
             <div class="chain-attack-select js-button">
-                <select class="chain-attack-dropdown">
+                <select class="chain-attack-dropdown js-input">
                     <option selected disabled hidden>Next Attack</option>
                 </select>
             </div>
         </template>
     </body>
-    <script src="data.js?53"></script>
+    <script src="data.js?54"></script>
 </html>
