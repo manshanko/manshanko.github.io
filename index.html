@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?54">
-        <script src="frontend.js?54"></script>
+        <link rel="stylesheet" href="format.css?57">
+        <script src="frontend.js?57"></script>
     </head>
     <body>
         <div style="display: none">
@@ -42,35 +42,43 @@
             </div>
         </div>
         <div id="SPA">
+            <div class="build-button-sticky">
+                <div class="build-button js-button">Build</div>
+            </div>
             <div class="header">
-                <div class="select-page js-button page-button" data-slot="attack-page">Attack Combo</div>
-                <div class="select-page js-button page-button" data-slot="weapon-page">Weapon Stats</div>
+                <div class="select-page js-button" data-slot="attack-page">Attack Combo</div>
+                <div class="select-page js-button" data-slot="weapon-page">Weapon Stats</div>
                 <input class="input-power-level js-input" type="number" step="1" min="15" max="600">
                 <select class="select-difficulty js-input"></select>
                 <select class="select-platform js-input">
                     <option value="pc" selected>PC</option>
                     <option value="console">Console</option>
                 </select>
+                <input class="select-file hide" type="file">
                 <div class="build-number"></div>
             </div>
             <div class="header-dummy"></div>
             <div class="sidebar">
-                <div class="build-button js-button">Build</div>
+                <div class="build-button-wrapper">
+                    <div class="build-button js-button">Build</div>
+                </div>
                 <div class="chain-attack-container">
                     <div class="chain-attack-header">
                         Headshot %
-                        <input class="select-headshot-percent js-input" type="number" step="1" min="0" max="100">
+                        <input class="select-headshot-percent js-input" type="number" step="1" min="0" max="100" value="0">
                     </div>
                 </div>
                 <div class="community-link">
                     Follow updates at our <a href="https://discord.gg/jrXeGXP">Discord</a>
                 </div>
             </div>
-            <div>
+            <div class="main-page-display">
                 <div class="attack-page main-page">
                     <div class="attack-plate">
-                        <div class="attack-combo hide">
-                            Attack Combo
+                        <div class="attack-combo">
+                            <div class="attack-combo-title js-button">
+                                Attack Combo
+                            </div>
                         </div>
                         <div class="weapon-breakpoints-container hide">
                             <div class="weapon-name js-button"></div>
@@ -187,5 +195,5 @@
             </div>
         </template>
     </body>
-    <script src="data.js?54"></script>
+    <script src="data.js?57"></script>
 </html>

@@ -16,8 +16,10 @@ body {
 }
 
 #SPA {
+    background: #222;
     display: grid;
     height: 100vh;
+    max-height: 100vh;
     grid-template-columns: 160px auto;
     grid-template-rows: 48px auto;
 }
@@ -91,6 +93,9 @@ body {
 }
 
 .main-page {
+    height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: #222;
 }
 
 .build-number {
@@ -126,9 +131,7 @@ body {
 }
 
 .attack-page {
-    overflow: hidden;
     width: 100%;
-    height: 100%;
 }
 
 .attack-page > div {
@@ -137,7 +140,6 @@ body {
 }
 
 .weapon-page {
-    overflow: hidden;
     grid-template-columns: 160px auto;
     grid-template-rows: auto;
 }
@@ -181,12 +183,27 @@ body {
     padding: 4px;
 }
 
+.build-button-sticky {
+    position: absolute;
+    left: -4096px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
 .build-modal-container {
     position: absolute;
     display: flex;
     flex-direction: row;
+    max-height: 560px;
     width: 100%;
     top: 140px;
+}
+
+@media only screen and (max-height: 840px) {
+    .build-modal-container {
+        top: calc(50% - 280px);
+    }
 }
 
 .build-modal-wrapper {
@@ -323,31 +340,30 @@ body {
 .attack-plate {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    height: calc(100vh - 48px);
-    background: #222;
+    max-width: 984px;
     padding: 4px;
 }
 
 .attack-combo {
     background: #777;
-    max-width: 968px;
     border-radius: 4px;
     margin: 4px;
+}
+
+.attack-combo-title {
+    margin: 2px;
 }
 
 .weapon-breakpoints-container {
     background: #777;
     border-radius: 4px;
-    max-width: 976px;
+    max-width: 968px;
     margin: 4px;
 }
 
 .weapon-breakpoints {
     background: gray;
-    width: 968px;
     border-radius: 4px;
-    margin: 4px;
 }
 
 .weapon-breakpoints-attacks {
@@ -358,7 +374,7 @@ body {
 
 .weapon-name {
     border-radius: 4px;
-    margin: 4px;
+    margin: 2px;
     padding: 4px;
 }
 
@@ -377,7 +393,6 @@ body {
     border-radius: 4px;
     border: 2px solid black;
     margin: 2px;
-    max-width: 964px;
 }
 
 .mob-name {
@@ -443,9 +458,8 @@ body {
     position: absolute;
     background: #666;
     margin: auto;
-    left: 0;
-    right: 0;
-    width: 365px;
+    width: 360px;
+    left: calc(50% - 180px);
     padding: 4px;
     z-index: 2;
 }
@@ -553,9 +567,6 @@ body {
 .weapon-plate {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    height: calc(100vh - 48px);
-    background: #222;
     padding: 4px;
 }
 
@@ -632,6 +643,7 @@ body {
 }
 
 .damage-table {
+    background: #AA7733;
     display: grid;
 }
 
@@ -670,14 +682,15 @@ body {
 }
 
 .superarmored {
-    background: #CF4CC9AA;
+    background: #DF5CD9AA;
 }
 
 .neither,
 .headshot,
 .critical,
 .both {
-    height: 18px;
+    height: 20px;
+    line-height: 18px;
     font-size: 11px;
     font-weight: bold;
     font-family: Tahoma;
@@ -714,23 +727,91 @@ body {
     100% {border: 1px solid #222}
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
+    :root {
+        --header-height: 80px;
+    }
+
     option {
         padding: 0;
     }
 
-    .build-number {
-        position: absolute;
-        left: -4096px;
-        height: 0px;
-        margin: 0px;
-        padding: 0px;
+    #SPA {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: scroll;
     }
+
+    .main-page {
+        overflow: hidden;
+        height: auto;
+    }
+
+    .main-page-display {
+    }
+
+    .header {
+        position: relative;
+        min-height: var(--header-height);
+        flex-wrap: wrap;
+        box-shadow: none;
+    }
+    .header > *:not(.select-page) {
+        flex-basis: 30%;
+    }
+
+/*
+    .header-dummy {
+        background: blue;
+        flex-basis: var(--header-height);
+        min-height: var(--header-height);
+        width: 100%;
+        order: 0;
+    }
+*/
+
+    .sidebar {
+        height: auto;
+/*        flex-basis: 50%;          */
+        grid-column: auto / auto;
+        grid-row: auto / auto;
+    }
+
+    .select-page {
+        flex-basis: 45%;
+        text-align: center;
+    }
+
+    .chain-attack-container {
+    }
+
+    .build-button-sticky {
+        position: sticky;
+        top: 0;
+        left: auto;
+        height: auto;
+        width: 100%;
+        z-index: 1;
+    }
+    .build-button-sticky > div {
+        border-radius: 0;
+    }
+/*
+    .build-button-wrapper {
+        position: absolute;
+    }
+
+    .build-button {
+        position: sticky;
+    }
+*/
 
     .build-modal-container {
         max-width: 1000px;
         max-height: 100vh;
         top: 0;
+        z-index: 2;
     }
 
     .build-modal {
@@ -742,19 +823,6 @@ body {
     .build-modal-wrapper {
         overflow: auto;
         overflow-x: hidden;
-    }
-
-    .attack-combo {
-        max-width: 488px;
-    }
-
-    .weapon-breakpoints-container {
-        max-width: 488px;
-    }
-
-    .weapon-breakpoints {
-        max-width: 488px;
-        margin: auto 0 0 0;
     }
 
     .build-modal-close {
@@ -782,6 +850,7 @@ body {
     }
 
     .item-container {
+        flex-basis: 30%;
         margin: 8px auto 8px auto;
         max-width: 280px;
     }
@@ -800,8 +869,89 @@ body {
     }
 
     .talent-row {
+        max-width: 100%;
         margin: 4px auto 4px auto;
     }
+
+    .talent {
+        height: 80px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .buff {
+        max-width: 100%;
+    }
+
+    .attack-combo {
+        max-width: 100%;
+    }
+
+    .weapon-breakpoints-container {
+        max-width: 100%;
+    }
+
+    .weapon-breakpoints {
+        max-width: 100%;
+        margin: auto 0 0 0;
+    }
+
+    .weapon-attack {
+        flex-basis: 48%;
+        font-size: 16px;
+    }
+
+    .breakpoint-plate {
+        flex-direction: column;
+    }
+    .breakpoint-plate > div {
+        border: 1px solid #222;
+        margin: 2px;
+        margin-top: 4px;
+    }
+    .breakpoint-plate > div:first-child {
+        margin-top: 2px;
+    }
+
+    .mob-name {
+        border-width: 0;
+    }
+
+    .breakpoint-row {
+        width: auto;
+    }
+    .breakpoint-row > div {
+        flex-basis: 25%;
+        width: auto;
+    }
+
+    .attack {
+        margin: auto;
+    }
+
+    .neither,
+    .headshot,
+    .critical,
+    .both {
+        height: 16px;
+        line-height: 16px;
+        font-size: 14px;
+        font-weight: normal;
+        border: 1px solid #222;
+        border-bottom-width: 0;
+    }
+
+    .build-button-wrapper,
+    .header-dummy,
+    .community-link,
+    .build-number {
+        position: absolute;
+        left: -4096px;
+        height: 0px;
+        margin: 0px;
+        padding: 0px;
+    }
+
 }
 
 .hide {
