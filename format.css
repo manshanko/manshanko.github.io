@@ -59,6 +59,35 @@ body {
     padding: 0;
 }
 
+.console-compare {
+    position: absolute;
+    background: #666;
+    width: 600px;
+    top: 150px;
+    left: calc(50% - 300px);
+    z-index: 3;
+}
+
+.console-compare > div {
+    margin: 2px;
+}
+
+.console-compare-weapon-container {
+}
+
+.console-compare-weapon-passed {
+    border: 1px solid green;
+}
+
+.console-compare-weapon-failed {
+    border: 1px solid red;
+}
+
+.console-compare-close-button {
+    background: #B00;
+    width: 140px;
+}
+
 .select-page {
 }
 
