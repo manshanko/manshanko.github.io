@@ -24,6 +24,15 @@ body {
     grid-template-rows: 48px auto;
 }
 
+.chain-options-modal-close,
+.build-modal-close {
+    position: absolute;
+    left: -4096px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
 .tooltip {
     white-space: pre;
 
@@ -225,22 +234,22 @@ body {
     padding: 0px;
 }
 
-.build-modal-container {
+.modal-container {
     position: absolute;
     display: flex;
     flex-direction: row;
-    max-height: 560px;
+    max-height: 0px;
     width: 100%;
     top: 140px;
 }
 
 @media only screen and (max-height: 840px) {
-    .build-modal-container {
+    .modal-container {
         top: calc(50% - 280px);
     }
 }
 
-.build-modal-wrapper {
+.modal-wrapper {
     margin: 0 auto 0 auto;
 }
 
@@ -267,20 +276,12 @@ body {
     border-color: #B00;
 }
 
-.build-modal-close {
-    position: absolute;
-    left: -4096px;
-    height: 0px;
-    margin: 0px;
-    padding: 0px;
-}
-
 .career-and-gear {
     display: flex;
     flex-direction: column;
 }
 
-.career-and-gear > div {
+.career-and-gear > .item-container {
     width: 180px;
 }
 
@@ -590,14 +591,58 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 4px;
-    height: 54px;
     padding: 4px;
     text-align: center;
 }
 
+.chain-options-modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: #555;
+    border: 2px solid #222;
+    border-radius: 8px;
+    height: 500px;
+    width: 500px;
+    z-index: 5;
+}
+
+.attack-options {
+    background: #888;
+    display: flex;
+    flex-direction: row;
+}
+
+.attack-count {
+    background: #AAA;
+    line-height: calc(200% + 7px);
+    min-width: 18px;
+    text-align: center;
+}
+
+.attack-name-options {
+    padding: 0 4px 0 4px;
+}
+.attack-name-options > p {
+    font-size: 22px;
+}
+
+.attack-option-select {
+    margin: auto 100px auto auto;
+}
+
+.headshot-percent {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.headshot-percent > div {
+    margin: auto;
+}
+
 .select-headshot-percent {
     width: 80px;
-    margin: auto;
 }
 
 .chain-attack-select {
@@ -762,28 +807,32 @@ body {
 
 .damage-change {
     animation-name: damage-change;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 
 @keyframes damage-change {
-    0% {border: 1px solid #F88}
-    100% {border: 1px solid #222}
+    0% {
+        border: 1px solid #F22
+    }
+    100% {
+        border: 1px solid #222
+    }
 }
 
 @media only screen and (max-width: 800px) {
-    :root {
-        --header-height: 80px;
-    }
-
     option {
         padding: 0;
+    }
+
+    body {
+        height: 100%;
     }
 
     #SPA {
         display: flex;
         flex-direction: column;
-        height: 100vh;
         overflow-y: scroll;
+        min-height: 100vh;
     }
 
     .main-page {
@@ -796,12 +845,13 @@ body {
 
     .header {
         position: relative;
-        min-height: var(--header-height);
+        height: auto;
         flex-wrap: wrap;
         box-shadow: none;
     }
     .header > *:not(.select-page) {
-        flex-basis: 30%;
+        flex-basis: 40%;
+        margin: 2px;
     }
 
 /*
@@ -839,6 +889,8 @@ body {
     }
     .build-button-sticky > div {
         border-radius: 0;
+        font-size: 32px;
+        height: auto;
     }
 /*
     .build-button-wrapper {
@@ -850,11 +902,16 @@ body {
     }
 */
 
-    .build-modal-container {
+    .modal-container {
         max-width: 1000px;
         max-height: 100vh;
         top: 0;
         z-index: 2;
+    }
+
+    .modal-wrapper {
+        overflow: auto;
+        overflow-x: hidden;
     }
 
     .build-modal {
@@ -863,11 +920,7 @@ body {
         flex-wrap: nowrap;
     }
 
-    .build-modal-wrapper {
-        overflow: auto;
-        overflow-x: hidden;
-    }
-
+    .chain-options-modal-close,
     .build-modal-close {
         position: relative;
         background: #4A4;
@@ -879,6 +932,10 @@ body {
         margin: auto;
         text-align: center;
         font-size: 28px;
+    }
+
+    .copy-build {
+        width: 100%;
     }
 
     .career-and-gear {

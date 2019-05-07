@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?76">
-        <script src="frontend.js?76"></script>
+        <link rel="stylesheet" href="format.css?77">
+        <script src="frontend.js?77"></script>
     </head>
     <body>
         <div style="display: none">
@@ -19,9 +19,9 @@
             </defs>
         </div>
         <div class="tooltip" style="display: none"></div>
-        <div class="build-modal-container hide">
-            <div class="build-modal-wrapper">
-                <div class="build-modal">
+        <div class="modal-container hide">
+            <div class="modal-wrapper">
+                <div class="build-modal modal">
                     <div class="career-and-gear">
                         <div class="copy-build js-button">Copy build</div>
                         <select class="select-career js-input">
@@ -33,6 +33,22 @@
                     <div class="talent-tree"></div>
                     <div class="buff-container"></div>
                     <div class="build-modal-close">Close</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-container hide">
+            <div class="modal-wrapper">
+                <div class="chain-options-modal modal">
+                    <div class="chain-options-dps">
+                        <div class="headshot-percent">
+                            Headshot %
+                            <div>
+                                <input class="select-headshot-percent js-input" type="number" step="1" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chain-attack-options"></div>
+                    <div class="chain-options-modal-close">Close</div>
                 </div>
             </div>
         </div>
@@ -65,9 +81,12 @@
                     <div class="build-button js-button">Build</div>
                 </div>
                 <div class="chain-attack-container">
-                    <div class="chain-attack-header">
-                        Headshot %
-                        <input class="select-headshot-percent js-input" type="number" step="1" min="0" max="100" value="0">
+                    <div class="chain-attack-header js-button">
+                        Chain Options
+                        <!--
+                            Headshot %
+                            <input class="select-headshot-percent js-input" type="number" step="1" min="0" max="100" value="0">
+                        -->
                     </div>
                 </div>
                 <div class="community-link">
@@ -197,5 +216,5 @@
             </div>
         </template>
     </body>
-    <script src="data.js?76"></script>
+    <script src="data.js?77"></script>
 </html>
