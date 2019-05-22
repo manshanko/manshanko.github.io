@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?77">
-        <script src="frontend.js?77"></script>
+        <link rel="stylesheet" href="format.css?80">
+        <script src="frontend.js?80"></script>
     </head>
     <body>
         <div style="display: none">
@@ -65,6 +65,7 @@
             <div class="header">
                 <div class="select-page js-button" data-slot="attack-page">Attack Combo</div>
                 <div class="select-page js-button" data-slot="weapon-page">Weapon Stats</div>
+                <div class="select-page js-button" data-slot="resource-page">Resources</div>
                 <input class="input-power-level js-input" type="number" step="1" min="15" max="600">
                 <select class="select-difficulty js-input"></select>
                 <input class="toggle-hbfs" type="checkbox">
@@ -90,7 +91,7 @@
                     </div>
                 </div>
                 <div class="community-link">
-                    Follow updates at our <a href="https://discord.gg/jrXeGXP">Discord</a>
+                    Follow updates at the <a href="https://discord.gg/jrXeGXP">Discord</a>
                 </div>
             </div>
             <div class="main-page-display">
@@ -206,6 +207,289 @@
                         </div>
                     </div>
                 </div>
+                <div class="resource-page main-page hide">
+                    <div class="resource-tab glossary-tab">
+                        <div class="resource-title-wrapper">
+                            <div class="resource-title js-button">
+                                Glossary
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Breakpoint
+                            </div>
+                            <div class="breakpoint-examples resource-example">
+                                <div class="infantry neither" title="Normal hit with 1h_axe against a fanatic">
+                                    2 (2%)
+                                </div>
+                                <div class="infantry headshot" title="headshot with 1h_axe against a fanatic">
+                                    1
+                                </div>
+                                <div class="infantry critical" title="critcal hit with 1h_axe against a fanatic">
+                                    1
+                                </div>
+                                <div class="infantry both" title="critical headshot with 1h_axe against a fanatic">
+                                    1
+                                </div>
+                            </div>
+                            <p>
+                                Breakpoint (BP) is the power needed to lower the amount of hits necessary to kill the target.
+                            </p>
+                            <p>
+                                For example, 1h_axe takes 2 hits to kill a fanatic on Legend. With 2% power vs fanatics the amount of hits needed is lowered to only 1, effectively doubling fanatic killspeed for non headshots/critcals.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Combo Speed
+                            </div>
+                            <div class="combo-speed-examples resource-example">
+                                <p style="color: red;">
+                                    0
+                                </p>
+                                <p>
+                                    2.02s
+                                </p>
+                            </div>
+                            <p>
+                                Combo speed is the estimated time it takes to complete the combo. Red means the combo is "incomplete".
+                            </p>
+                            <p>
+                                A combo is complete when it "wraps". To wrap a combo it must end in an action that can be chained into the first action in the combo. Doing a full light/heavy attack rotation, having the last action be anim_cancel/block, or having the last action performed with a different weapon than the first action will wrap the combo.
+                            </p>
+                            <p>
+                                Combo speed (and DPS by extension too) is only an estimate. In practice the actual values will be worse due to unmeasureable mechanics.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                DPS
+                            </div>
+                            <div class="combo-damage-box resource-example">
+                                <div class="infantry" title="1h_axe dps against infantry">28.2</div>
+                                <div class="armored" title="1h_axe dps against armored">15.1</div>
+                                <div class="monster" title="1h_axe dps against monster">57.6</div>
+                                <div class="berserker" title="1h_axe dps against berserker">18.1</div>
+                                <div class="superarmored" title="1h_axe dps against superarmored">14.2</div>
+                            </div>
+                            <p>
+                                DPS is the estimated sustained single target damage done against that armor type.
+                            </p>
+                            <p>
+                                Headshots and criticals are used to calculate DPS. To modify headshot hit percentage open the "Chain Options" menu with the button located underneath the "Build" button.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Copy Build
+                            </div>
+                            <div class="copy-build js-button copy-build-examples resource-example">
+                                Copy Build
+                            </div>
+                            <p>
+                                Copy Build converts a valid build into a URL that can be shared with others.
+                            </p>
+                            <p>
+                                It attempts to copy the full URL into the clipboard. In case this isn't supported by your browser the code is automatically selected for ease of copying. Just share the link copied or the website link with the code appended.
+                            </p>
+                        </div>
+                        <div class="hit-type-examples resource-item">
+                            <div class="resource-item-title">
+                                Hit Types
+                            </div>
+                            <p>
+                                In Vermintools hit types are separated into 4 types:
+                            </p>
+                            <b>
+                                1. neither
+                            </b>
+                            <p class="indent-1">
+                                It is a <span class="normal-hit">normal hit</span> to the <span class="normal-hit">body</span>.
+                            </p>
+                            <b>
+                                2. headshot
+                            </b>
+                            <p class="indent-1">
+                                It is a <span class="normal-hit">normal hit</span> to the <span class="headshot-hit">head</span>.
+                            </p>
+                            <b>
+                                3. critical
+                            </b>
+                            <p class="indent-1">
+                                It is a <span class="critical-hit">critical hit</span> to the <span class="normal-hit">body</span>.
+                            </p>
+                            <b>
+                                4. both
+                            </b>
+                            <p class="indent-1">
+                                It is a <span class="critical-hit">critical hit</span> to the <span class="headshot-hit">head</span>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="resource-tab mechanics-tab">
+                        <div class="resource-title-wrapper">
+                            <div class="resource-title js-button">
+                                Mechanics
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Breakpoints
+                            </div>
+                            <p>
+                                Damage in Vermintide 2 is rounded to the nearest quarter of an integer (i.e. 10.2 would round to 10.25 and 10.1 would round to 10).
+                            </p>
+                            <p>
+                                Vermintools takes the rounding into account when calculating breakpoints. For example, a 1h axe light attack deals ~9.2 raw damage which rounds to 9.25 damage. Against a stormvermin (39 hp) it'd take 1h axe 5 hits (39 hp / 9.25 damage = 5 hits). To reach the next breakpoint (5 hits -> 4 hits) it would need ~4.8% power vs stormvermin to increase the raw damage to ~9.625 which rounds to 9.75 (39 hp / 9.75 damage = 4 hits).
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Damage Calculation (power vs)
+                            </div>
+                            <p>
+                                All damage is calculated in JavaScript using functions based on Vermintide 2's Lua damage functions.
+                            </p>
+                            <p>
+                                This includes the difficulty softcap for power level, headshot damage boosts, critical power boosts, and strength potion. All different types of power vs are multiplied against each other. The order can be simplified as such:
+                            </p>
+                            <br>
+                            <p class="indent-1">
+                                raw damage * (1 + (power vs armor type)) * (1 + (power vs race)) * (1 + (power melee/ranged)) * (1 + (power)) * (1 + (damage taken debuff))
+                            </p>
+                            <br>
+                            <p>
+                                For example, a 1h_axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, increased melee damage on no ammo (25% power melee), 5 stacks of barrage (25% generic power), and shrapnel active (20%) against a stormvermin would do:
+                            </p>
+                            <p class="indent-1 math">
+                               ~9.2 * (1 + (.1)) * (1 + (.2)) * (1 + (.25)) * (1 + (.25)) * (1 + (.2))
+                            </p>
+                            <p class="math">
+                                = ~9.2 * (1.1) * (1.2) * (1.25) * (1.25) * (1.2)
+                            </p>
+                            <p class="math">
+                                = ~9.2 * 2.475
+                            </p>
+                            <p class="math">
+                                = ~22.77 which rounds to 22.75 damage
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Damage Calculation (headshot/critical boosts)
+                            </div>
+                            <p>
+                                Headshot boost and critical power boost modifiers interact with damage differently than power vs modifiers.
+                            </p>
+                            <p>
+                                Each damage profile for an attack has a boost curve that defines a beizer curve. The boost curve's Y cordinate functions as the multiplier for the extra damage from headshots and/or criticals. The Y position is normally a range from 0 to 1 unless a boost curve multiplier defined in the damage profile overrides the maximum value. The X position is a range from 0 to 1. Headshots and criticals each add 0.5 to X. If the target is superarmored or a monster than headshots only add 0.25 to X.
+                            </p>
+                            <br>
+                            <p>
+                                Headshot boosts from Witch Hunter Captain (passive 25% and 50% from talent) and from Wayfarer (50% from talent) modify the X position bonus for the beizer curve from headshotting. However, headshot criticals already max the X value at 1 (0.5 + 0.5) so unless the target is monster or supearmored (0.25 + 0.5) headshot boost has no effect on headshot criticals.
+                            </p>
+                            <br>
+                            <p>
+                                Critical power boost increases the extra damage calculated from the boost curve. This includes all of the extra damage from headshot criticals.
+                            </p>
+                            <p>
+                                For example, an attack deals 40 damage on a normal hit and 80 damage on a critical hit.
+                            </p>
+                            <p class="indent-1 math">
+                                80 - 40
+                            </p>
+                            <p class="math">
+                                = <span style="color:#FFF;">40</span>
+                            </p>
+                            <p></p>
+                            <p class="indent-1 math">
+                                40 + (<span style="color:#FFF;">40</span> * 1.2)
+                            </p>
+                            <p class="math">
+                                = 40 + 48
+                            </p>
+                            <p class="math">
+                                = 88
+                            </p>
+                            <p>
+                                While this works for most damage profiles, some actually have a different armor multiplier for the raw damage on a critical hit vs a normal hit that is independant of the extra damage from critical hits. If we take our existing example and increase the critical armor multiplier over the base armor multiplier by 50% we'd get 40 damage on a normal hit and 120 damage on a critical hit. Since the raw damage is actually 50% higher on a crit this would be the correct way to calculate the extra damage.
+                            </p>
+                            <p class="indent-1 math">
+                                60 + (60 * 1.2)
+                            </p>
+                            <p class="math">
+                                = 60 + 72
+                            </p>
+                            <p class="math">
+                                = 132
+                            </p>
+                            <p>
+                                If we just tried to subtract the base damage from the critical damage to get the extra damage and multiply that by the critical power boost amount we would get incorrect values if the damage profile has a different critical armor multiplier than base armor multiplier.
+                            </p>
+                            <p class="indent-1 math">
+                                120 - 40
+                            </p>
+                            <p class="math">
+                                = <span style="color:#FFF;">80</span>
+                            </p>
+                            <p></p>
+                            <p class="indent-1 math">
+                                40 + (<span style="color:#FFF;">80</span> * 1.2)
+                            </p>
+                            <p class="math">
+                                = 40 + 96
+                            </p>
+                            <p class="math">
+                                = 136
+                            </p>
+                            <p class="math">
+                                <span style="color:#E00;">!</span>= 132
+                            </p>
+                            <p>
+                                This makes it difficult to calculate damage with critical power boost unless we had access to the damage profile used.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Attack Speed
+                            </div>
+                            <p>
+                                Vermintools compiles the attack speed directly from Vermintide 2. While it can simulate most ingame attack speed, a few outliers (hagbane finger roll) aren't supported at this time.
+                            </p>
+                            <p>
+                                Attacks that have 0 wait time for block/animation cancel are handled by assuming that the attack would be interrupted halfway through the damage window. For example, axe and falchion L1 -> animation cancel has the highest base melee DPS but the animation cancel window starts before the damage window starts. This means that while it is possible to attack that fast, brute forcing animation cancel with a macro wouldn't work with it due to interrupting the attack before the damage window starts and thus dealing no damage.
+                            </p>
+                            <p>
+                                Combos ending with a animation cancel are hard coded to add a flat .05s (3 frames for 60hz) to the combo speed to simulate the delay from QQ cancel. This can be partially circumvented by repeating the combo multiple times or completely circumvented by ending the combo with a different weapon's action.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="resource-tab external-resources-tab">
+                        <div class="resource-title-wrapper">
+                            <div class="resource-title js-button">
+                                External Resources
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.reddit.com/r/Vermintide/comments/90qola/a_list_of_everything_you_wish_fatshark_told_you/">A List of Everything You Wish Fatshark Told You</a>
+                            <p>
+                                Maintained by OrangeChris. Explains a lot of basic and/or hidden mechanics in Vermintide 2.
+                            </p>
+                            <a href="https://docs.google.com/spreadsheets/d/1_KihiXcEb1nP355Nwj0aQ3SszKwqrzQ6ra63CWPQq4I/edit?usp=sharing">Spreadsheet Breakpoint Calculator</a>
+                            <p>
+                                Maintained by OrangeChris. Forked from Lasmrah's original breakpoint calculator.
+                            </p>
+                            <a href="https://builds.verminti.de/">Verminbuilds</a>
+                            <p>
+                                Maintained by absolute_ly and community. Created by bfir3.
+                            </p>
+                            <a href="https://docs.google.com/spreadsheets/d/1PiWoQOH9LeZVlbHv5GvTaToet5wKW6AdpKDf35StcBI/edit#gid=1134474477">Mobs' HP (1.04)</a>
+                            <p>
+                                Created by UnShamed. Excluding the Troll (hp has since been increased by 20% for all difficulties) it is still accurate.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <template id="TEMPLATE-CHAIN">
@@ -216,5 +500,5 @@
             </div>
         </template>
     </body>
-    <script src="data.js?77"></script>
+    <script src="data.js?80"></script>
 </html>

@@ -24,6 +24,10 @@ body {
     grid-template-rows: 48px auto;
 }
 
+.main-page-display {
+    overflow-y: auto;
+}
+
 .chain-options-modal-close,
 .build-modal-close {
     position: absolute;
@@ -48,6 +52,7 @@ body {
 }
 
 .js-button {
+    user-select: none;
     background: #333;
     color: #DDD;
     border: 2px solid #222;
@@ -136,7 +141,8 @@ body {
 }
 
 .main-page {
-    height: calc(100vh - 48px);
+    min-height: calc(100vh - 48px);
+    max-width: 984px;
     overflow-y: auto;
     background: #222;
 }
@@ -190,6 +196,10 @@ body {
 .weapon-page > div {
     text-align: center;
     font-size: 30px;
+}
+
+.resource-page {
+    padding: 4px;
 }
 
 .sidebar {
@@ -268,6 +278,7 @@ body {
 }
 
 .copy-build {
+    user-select: auto;
     margin-bottom: 6px;
 }
 
@@ -384,7 +395,6 @@ body {
 .attack-plate {
     display: flex;
     flex-direction: column;
-    max-width: 984px;
     padding: 4px;
 }
 
@@ -678,7 +688,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 6px;
+    min-height: 8px;
 }
 
 .attack {
@@ -688,7 +698,7 @@ body {
     border-radius: 4px;
     flex-direction: column;
     width: 240px;
-    margin: 4px 2px 4px 2px;
+    margin: 2px 1px;
 }
 
 .attack-header {
@@ -810,6 +820,104 @@ body {
     animation-duration: 1.5s;
 }
 
+.resource-tab {
+    color: #DDD;
+    background: #777;
+    border-radius: 4px;
+    margin: 4px;
+    padding: 2px;
+}
+
+.resource-title-wrapper {
+}
+
+.resource-title {
+    text-align: center;
+    font-size: 30px;
+}
+
+.resource-item-title {
+    background-image: linear-gradient(180deg, #999, #777);
+    color: #DDD;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto;
+    padding: 4px;
+}
+
+.resource-item {
+    background: #000;
+    margin: 2px;
+    padding: 2px;
+}
+.resource-item > p:not(.math) {
+    margin: 4px;
+}
+.resource-item > a {
+    color: #AAD;
+}
+
+.resource-example {
+    user-select: none;
+    margin: 4px;
+}
+
+.glossary-tab > div > div:not(.glossary-item):not(.copy-build-examples):not(.resource-title) {
+    color: black;
+    text-align: center;
+}
+
+.breakpoint-examples {
+    background: #AA7733;
+    display: flex;
+    flex-direction: row;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.breakpoint-examples > div {
+    width: 60px;
+}
+
+.combo-speed-examples {
+    background: #777;
+    font-size: 30px;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.copy-build-examples {
+    color: #DDD;
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.hit-type-examples > p:not(.math) {
+    margin: 0;
+    margin-bottom: 4px;
+}
+.hit-type-examples > p > .normal-hit {
+    color: white;
+}
+.hit-type-examples > p > .headshot-hit {
+    color: yellow;
+}
+.hit-type-examples > p > .critical-hit {
+    color: #E00;
+}
+
+.external-resources-tab > div > p:not(.math) {
+    margin-top: 0;
+}
+
+.indent-1 {
+    text-indent: 16px;
+}
+
+
 @keyframes damage-change {
     0% {
         border: 1px solid #F22
@@ -825,19 +933,22 @@ body {
     }
 
     body {
-        height: 100%;
+        overflow-y: auto;
     }
 
     #SPA {
         display: flex;
         flex-direction: column;
-        overflow-y: scroll;
         min-height: 100vh;
+        max-height: none;
+        height: auto;
     }
 
+    .main-page-display,
     .main-page {
         overflow: hidden;
         height: auto;
+        min-height: auto;
     }
 
     .main-page-display {
@@ -877,6 +988,16 @@ body {
     }
 
     .chain-attack-container {
+    }
+
+    .chain-options-modal {
+        min-height: 100vh;
+        height: auto;
+        width: 100vw;
+    }
+
+    .attack-option-select {
+        margin: auto 16px auto auto;
     }
 
     .build-button-sticky {
@@ -929,7 +1050,7 @@ body {
         height: 120px;
         line-height: 120px;
         width: 100%;
-        margin: auto;
+        margin: auto auto 0 auto;
         text-align: center;
         font-size: 28px;
     }
