@@ -1023,6 +1023,7 @@ body {
 */
 
     .modal-container {
+        position: fixed;
         max-width: 1000px;
         max-height: 100vh;
         top: 0;
@@ -1176,6 +1177,10 @@ body {
         padding: 0px;
     }
 
+}
+
+.no-scroll {
+    overflow: hidden;
 }
 
 .hide {
