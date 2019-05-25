@@ -931,8 +931,12 @@ body {
         padding: 0;
     }
 
+    html {
+    }
+
     body {
         overflow-y: auto;
+        height: 100%;
     }
 
     #SPA {
@@ -960,8 +964,12 @@ body {
         box-shadow: none;
     }
     .header > *:not(.select-page) {
-        flex-basis: 40%;
-        margin: 2px;
+        flex-basis: 30%;
+        margin: 4px;
+    }
+
+    .toggle-hbfs {
+        order: 4;
     }
 
 /*
@@ -982,7 +990,7 @@ body {
     }
 
     .select-page {
-        flex-basis: 45%;
+        flex-basis: 30%;
         text-align: center;
     }
 
@@ -1169,7 +1177,8 @@ body {
     .build-button-wrapper,
     .header-dummy,
     .community-link,
-    .build-number {
+    .build-number,
+    .hide > .breakpoint-plate > div {
         position: absolute;
         left: -4096px;
         height: 0px;
