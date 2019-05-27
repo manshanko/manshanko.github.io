@@ -5,10 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?87">
-        <script src="frontend.js?87"></script>
+        <link rel="stylesheet" href="format.css?95">
+        <script src="frontend.js?95"></script>
     </head>
-    <body>
+    <body onload="prepPage()">
         <div style="display: none">
             <defs>
                 <svg id="svg-attack-speed">
@@ -74,7 +74,7 @@
                     <option value="console">Console</option>
                 </select>
                 <input class="select-file hide" type="file">
-                <div class="build-number"></div>
+                <div class="build-number">95-27/5/2019</div>
             </div>
             <div class="header-dummy"></div>
             <div class="sidebar">
@@ -334,6 +334,17 @@
                         </div>
                         <div class="resource-item">
                             <div class="resource-item-title">
+                                Power Level
+                            </div>
+                            <p>
+                                Power level is your character's hero power + 185. The lowest and highest power level is 200 and 785 respectively.
+                            </p>
+                            <p>
+                                Attack power, stagger power and cleave power are all calculated using a function that takes power level and returns a non-linear value. If hero power was increase from 15 to 215 and consequently doubled power level from 200 to 400 it would only increase the value by ~41%. For attack power the lowest is 231.25 at 200 power level (15 hero power) and the highest is 565.625 at 785 power level (600 hero power). This means that, ignoring Recruit and Veteran difficulties which have a power level soft cap, going from 15 hero power to 600 hero power is a damage increase of ~145%.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
                                 Breakpoints
                             </div>
                             <p>
@@ -341,6 +352,20 @@
                             </p>
                             <p>
                                 Vermintools takes the rounding into account when calculating breakpoints. For example, a 1h axe light attack deals ~9.2 raw damage which rounds to 9.25 damage. Against a stormvermin (39 hp) it'd take 1h axe 5 hits (39 hp / 9.25 damage = 5 hits). To reach the next breakpoint (5 hits -> 4 hits) it would need ~4.8% power vs stormvermin to increase the raw damage to ~9.625 which rounds to 9.75 (39 hp / 9.75 damage = 4 hits).
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Cleave
+                            </div>
+                            <p>
+                                An attacks cleave is largely controlled by 3 factors. That attack's hit mass profile, power level, and the cleave coefficient in the damage profile used.
+                            </p>
+                            <p>
+                                When an attack starts a swing the cleave value is calculated. When a mob is hit the mob's hit mass is removed from the cleave value. Once the cleave value reachs 0 the attack stops cleaving. For example, the attack has a cleave value of 10 and hits a mob with a hit mass of 9 its cleave value would be reduced to 1 allowing it to hit one more mob. If the attack has a hit mass profile that reduces that mob's hit mass by 0.5 then the mob's effective hit mass to that attack would be 4.5 (9 * 0.5 = 4.5) meaning that that attack could hit 3 of those mobs in one swing as opposed to 2.
+                            </p>
+                            <p>
+                                Damage profiles can have different damage scaling and armor multipliers for each target hit (i.e. first target hit, second target hit, third target hit) in an attack. While some attacks can't cleave two stormvermin, it could be possible to hit a slave rat and then a stormvermin. Although since the stormvermin is the second target hit the attack it would typically deal less damage than if the stormvermin was the first target.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -359,19 +384,19 @@
                             </p>
                             <br>
                             <p>
-                                For example, a 1h_axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, increased melee damage on no ammo (25% power melee), 5 stacks of barrage (25% generic power), and shrapnel active (20%) against a stormvermin would do:
+                                For example, a 1h_axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, increased melee damage on no ammo (25% generic power) and 5 stacks of barrage (25% generic power), and shrapnel active (20%) against a stormvermin would do:
                             </p>
                             <p class="indent-1 math">
-                               ~9.2 * (1 + (.1)) * (1 + (.2)) * (1 + (.25)) * (1 + (.25)) * (1 + (.2))
+                               ~9.2 * (1 + (.1)) * (1 + (.2)) * (1 + (.25 + .25)) * (1 + (.2))
                             </p>
                             <p class="math">
-                                = ~9.2 * (1.1) * (1.2) * (1.25) * (1.25) * (1.2)
+                                = ~9.2 * (1.1) * (1.2) * (1.50) * (1.2)
                             </p>
                             <p class="math">
-                                = ~9.2 * 2.475
+                                = ~9.2 * 2.376
                             </p>
                             <p class="math">
-                                = ~22.77 which rounds to 22.75 damage
+                                = ~21.86 which rounds to 21.75 damage
                             </p>
                         </div>
                         <div class="resource-item">
@@ -500,5 +525,5 @@
             </div>
         </template>
     </body>
-    <script src="data.js?87"></script>
+    <script src="data.js?95" onload="verminted.finished_loading = true;"></script>
 </html>
