@@ -311,7 +311,6 @@ body {
     margin: 2px 0px 2px 0px;
     text-align: center;
 }
-
 .item-container > select {
     margin: 2px;
     width: calc( 100% - 4px);
@@ -328,6 +327,10 @@ body {
     margin-top: 4px;
 }
 
+.item-container-last {
+    margin-bottom: 0;
+}
+
 .item-property {
 }
 
@@ -342,7 +345,7 @@ body {
     flex-direction: row;
     border: 2px solid #222;
     border-radius: 8px;
-    margin: 8px 8px auto 8px;
+    margin: auto 8px;
     padding: 2px;
 }
 
@@ -503,6 +506,17 @@ body {
 }
 .breakpoint-row > div {
     width: 60px;
+}
+
+.extra-target-row {
+    color: white;
+    font-size: 14px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+/*
+    background: #888;
+    border-bottom: 1px solid black;
+*/
 }
 
 /*.mob-name {
@@ -819,7 +833,7 @@ body {
 
 .damage-change {
     animation-name: damage-change;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
 }
 
 .resource-tab {

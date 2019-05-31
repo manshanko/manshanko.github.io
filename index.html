@@ -5,9 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?101">
-        <script src="frontend.js?101"></script>
-        <script src="data.js?101" onload="verminted.finished_loading = true;" defer></script>
+        <link rel="stylesheet" href="format.css?107">
+        <script src="frontend.js?107"></script>
+        <script src="data.js?107" onload="verminted.finished_loading = true;" defer></script>
     </head>
     <body>
         <div style="display: none">
@@ -77,7 +77,7 @@
                     <option value="console">Console</option>
                 </select>
                 <input class="select-file hide" type="file">
-                <div class="build-number">101-30/5/2019</div>
+                <div class="build-number">107-31/5/2019</div>
             </div>
             <div class="header-dummy"></div>
             <div class="sidebar">
@@ -369,6 +369,9 @@
                             </p>
                             <p>
                                 Damage profiles can have different damage scaling and armor multipliers for each target hit (i.e. first target hit, second target hit, third target hit) in an attack. While some attacks can't cleave two stormvermin, it could be possible to hit a slave rat and then a stormvermin. Although since the stormvermin is the second target hit the attack it would typically deal less damage than if the stormvermin was the first target.
+                            </p>
+                            <p>
+                                Damage profiles have up to 4 target overrides and a default_target defined. That means no damage profile has more than 5 unique damage values. Because of this there is only up to 5 breakpoint rows with all excess targets simplified to "+X". Any excess targets will use the same breakpoint as the 5th target.
                             </p>
                         </div>
                         <div class="resource-item">
