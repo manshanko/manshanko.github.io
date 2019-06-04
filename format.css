@@ -870,16 +870,14 @@ body {
 .resource-item > p:not(.math) {
     margin: 4px;
 }
-.resource-item > a {
+
+.lighter-link {
     color: #AAD;
 }
 
 .resource-example {
     user-select: none;
     margin: 4px;
-}
-
-.glossary-tab > div > div:not(.glossary-item):not(.copy-build-examples):not(.resource-title) {
     color: black;
     text-align: center;
 }
@@ -931,6 +929,18 @@ body {
 
 .indent-1 {
     text-indent: 16px;
+}
+
+.math-highlight {
+    color: #FFF;
+}
+
+.math-correct {
+    color: #4F4;
+}
+
+.math-incorrect {
+    color: #E00;
 }
 
 
@@ -1209,7 +1219,8 @@ body {
     overflow: hidden;
 }
 
-.hide {
+.hide,
+.hide > * {
     position: absolute;
     left: -4096px;
     height: 0px;

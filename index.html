@@ -4,10 +4,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=0">
+        <meta name="description" content="Vermintools lets users explore damage breakpoints, damage per second, and more for Vermintide 2.">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?107">
-        <script src="frontend.js?107"></script>
-        <script src="data.js?107" onload="verminted.finished_loading = true;" defer></script>
+        <link rel="stylesheet" href="format.css?129">
+        <script src="frontend.js?129"></script>
     </head>
     <body>
         <div style="display: none">
@@ -69,15 +69,17 @@
                 <div class="select-page js-button" data-slot="attack-page">Attack Combo</div>
                 <div class="select-page js-button" data-slot="weapon-page">Weapon Stats</div>
                 <div class="select-page js-button" data-slot="resource-page">Resources</div>
-                <input class="input-power-level js-input" type="number" step="1" min="15" max="600">
-                <select class="select-difficulty js-input"></select>
+                <input class="input-power-level js-input" type="number" step="1" min="15" max="600" value="600">
+                <select class="select-difficulty js-input">
+                    <option selected disabled hidden>legend</option>
+                </select>
                 <input class="toggle-hbfs" type="checkbox">
                 <select class="select-platform js-input">
                     <option value="pc" selected>PC</option>
                     <option value="console">Console</option>
                 </select>
                 <input class="select-file hide" type="file">
-                <div class="build-number">107-31/5/2019</div>
+                <div class="build-number">129-3/6/2019</div>
             </div>
             <div class="header-dummy"></div>
             <div class="sidebar">
@@ -211,6 +213,27 @@
                     </div>
                 </div>
                 <div class="resource-page main-page hide">
+                    <div class="resource-tab about-tab">
+                        <div class="resource-title-wrapper">
+                            <div class="resource-title js-button">
+                                About
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Vermintools
+                            </div>
+                            <p>
+                                Vermintools is a tool that lets users explore weapon breakpoints, damage per second, and more for Vermintide 2.
+                            </p>
+                            <p>
+                                Developed in native JavaScript, Vermintools uses ingame formulas for calculating values. With only a handful of exceptions all of the data used is parsed directly from Vermintide 2.
+                            </p>
+                            <p>
+                                Vermintools was created and is maintained by ManShanko. He can be reached at <a class="lighter-link" href="https://www.reddit.com/user/ManShanko">u/ManShanko</a> on reddit or ManShanko#9249 on Discord.
+                            </p>
+                        </div>
+                    </div>
                     <div class="resource-tab glossary-tab">
                         <div class="resource-title-wrapper">
                             <div class="resource-title js-button">
@@ -279,7 +302,7 @@
                                 DPS is the estimated sustained single target damage done against that armor type.
                             </p>
                             <p>
-                                Headshots and criticals are used to calculate DPS. To modify headshot hit percentage open the "Chain Options" menu with the button located underneath the "Build" button.
+                                Headshots and criticals are used to calculate DPS. To modify headshot hit percentage open the "Chain Options" menu and modify the field under "Headshot %". The hit overrides for attacks in combos underneath "Headshot %" does not affect DPS. This is by design since DPS is suppose to be sustained damage available from build/buffs.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -343,7 +366,7 @@
                                 Power level is your character's hero power + 185. The lowest and highest power level is 200 and 785 respectively.
                             </p>
                             <p>
-                                Attack power, stagger power and cleave power are all calculated using a function that takes power level and returns a non-linear value. If hero power was increase from 15 to 215 and consequently doubled power level from 200 to 400 it would only increase the value by ~41%. For attack power the lowest is 231.25 at 200 power level (15 hero power) and the highest is 565.625 at 785 power level (600 hero power). This means that, ignoring Recruit and Veteran difficulties which have a power level soft cap, going from 15 hero power to 600 hero power is a damage increase of ~145%.
+                                Attack power, stagger power and cleave power are all calculated using a function that takes power level. This function will return 231.25 attack power for 200 power level incrementing by 0.3125 per 1 power level up to 262.5 at 300 power level. After 300 power level it increments by 0.625 until 785 power level ending at 565.625. If hero power was increase from 15 to 215 therefore doubling power level from 200 to 400 it would only increase the value by ~41%. This means that, ignoring Recruit and Veteran difficulties which have a power level soft cap, going from 15 to 215 hero power is a damage increase of ~41% and going from 15 to 600 hero power is a damage increase of ~145%.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -362,16 +385,19 @@
                                 Cleave
                             </div>
                             <p>
-                                An attacks cleave is largely controlled by 3 factors. That attack's hit mass profile, power level, and the cleave coefficient in the damage profile used.
+                                An attack's cleave is largely controlled by 3 factors. That attack's hit mass profile, power level, and the cleave coefficient in the damage profile.
                             </p>
                             <p>
-                                When an attack starts a swing the cleave value is calculated. When a mob is hit the mob's hit mass is removed from the cleave value. Once the cleave value reachs 0 the attack stops cleaving. For example, the attack has a cleave value of 10 and hits a mob with a hit mass of 9 its cleave value would be reduced to 1 allowing it to hit one more mob. If the attack has a hit mass profile that reduces that mob's hit mass by 0.5 then the mob's effective hit mass to that attack would be 4.5 (9 * 0.5 = 4.5) meaning that that attack could hit 3 of those mobs in one swing as opposed to 2.
+                                When an attack starts a swing a cleave value for damage and stagger is calculated. When a mob is hit the mob's hit mass is removed from the cleave value. Once a cleave value reachs 0 that portion stops cleaving. For example, if an attack had a damage cleave value of 10 and hit a mob with a hit mass of 9 its cleave value would be reduced to 1 allowing it to hit one more mob. If the attack has a hit mass profile that multiplies that mob's hit mass by 0.5 then the mob's effective hit mass to that attack would be 4.5 (9 * 0.5 = 4.5) meaning that that attack could damage 3 of those mobs in one swing as opposed to 2. Attacks will typically have different cleave values for damage dealt and stagger.
                             </p>
                             <p>
-                                Damage profiles can have different damage scaling and armor multipliers for each target hit (i.e. first target hit, second target hit, third target hit) in an attack. While some attacks can't cleave two stormvermin, it could be possible to hit a slave rat and then a stormvermin. Although since the stormvermin is the second target hit the attack it would typically deal less damage than if the stormvermin was the first target.
+                                Damage profiles can have different damage scaling and armor multipliers for each target hit (i.e. first target hit, second target hit, third target hit) in an attack. While some attacks can't cleave two stormvermin, it could be possible to hit a slave rat and then a stormvermin. Although since the stormvermin is the second target hit the attack it would deal less damage than if the stormvermin was the first target.
                             </p>
                             <p>
-                                Damage profiles have up to 4 target overrides and a default_target defined. That means no damage profile has more than 5 unique damage values. Because of this there is only up to 5 breakpoint rows with all excess targets simplified to "+X". Any excess targets will use the same breakpoint as the 5th target.
+                                Some damage profiles use default target for 1st target hit and a target override for 2nd. This causes any target after the 2nd to take the same amount of damage as the 1st target. For example, Falchion light_attack_down "benefits" from this against slave rats with base damage cleave, and a lot of other attacks will "benefit" from it with enough cleave increase. This is likely because of inherited values from Vermintide 1 not properly adapted to Vermintide 2.
+                            </p>
+                            <p>
+                                Damage profiles have up to 4 target overrides and a default_target defined. That means no damage profile has more than 5 unique damage values for targets hit. Because of this there is only up to 5 breakpoint rows with all excess targets simplified to "+X". Any excess targets will use the same breakpoint as the 5th target.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -385,24 +411,24 @@
                                 This includes the difficulty softcap for power level, headshot damage boosts, critical power boosts, and strength potion. All different types of power vs are multiplied against each other. The order can be simplified as such:
                             </p>
                             <br>
-                            <p class="indent-1">
-                                raw damage * (1 + (power vs armor type)) * (1 + (power vs race)) * (1 + (power melee/ranged)) * (1 + (power)) * (1 + (damage taken debuff))
+                            <p>
+                                damage * (1 + (power vs armor type)) * (1 + (power vs race)) * (1 + (power melee/ranged)) * (1 + (generic power)) * (1 + (damage taken debuff))
                             </p>
                             <br>
                             <p>
-                                For example, a 1h_axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, increased melee damage on no ammo (25% generic power) and 5 stacks of barrage (25% generic power), and shrapnel active (20%) against a stormvermin would do:
+                                For example, a 1h_axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, Last Resort talent (25% generic power) and 5 stacks of Barrage (25% generic power), and Shrapnel active (20%) against a stormvermin would do:
                             </p>
                             <p class="indent-1 math">
-                               ~9.2 * (1 + (.1)) * (1 + (.2)) * (1 + (.25 + .25)) * (1 + (.2))
+                               ~9.2 * (1 + (.1)) * (1 + (.2)) * (1 + (0)) * (1 + (.25 + .25)) * (1 + (.2))
                             </p>
                             <p class="math">
-                                = ~9.2 * (1.1) * (1.2) * (1.50) * (1.2)
+                                = ~9.2 * (1.1) * (1.2) * (1) * (1.50) * (1.2)
                             </p>
                             <p class="math">
                                 = ~9.2 * 2.376
                             </p>
                             <p class="math">
-                                = ~21.86 which rounds to 21.75 damage
+                                = ~21.86 which rounds to <span class="math-correct">21.75</span> damage
                             </p>
                         </div>
                         <div class="resource-item">
@@ -413,15 +439,93 @@
                                 Headshot boost and critical power boost modifiers interact with damage differently than power vs modifiers.
                             </p>
                             <p>
-                                Each damage profile for an attack has a boost curve that defines a beizer curve. The boost curve's Y cordinate functions as the multiplier for the extra damage from headshots and/or criticals. The Y position is normally a range from 0 to 1 unless a boost curve multiplier defined in the damage profile overrides the maximum value. The X position is a range from 0 to 1. Headshots and criticals each add 0.5 to X. If the target is superarmored or a monster than headshots only add 0.25 to X.
+                                Each damage profile for an attack has a boost curve that defines a boost curve. The boost curve's Y cordinate functions as the multiplier for the extra damage from headshots and/or criticals. The Y position is normally a range from 0 to 1 unless a boost curve multiplier defined in the damage profile overrides the maximum value. The X position is a range from 0 to 1. Headshots and criticals each boost X by 0.5. If the target is superarmored or a monster than headshots only add 0.25 to X.
                             </p>
                             <br>
                             <p>
-                                Headshot boosts from Witch Hunter Captain (passive 25% and 50% from talent) and from Wayfarer (50% from talent) modify the X position bonus for the beizer curve from headshotting. However, headshot criticals already max the X value at 1 (0.5 + 0.5) so unless the target is monster or supearmored (0.25 + 0.5) headshot boost has no effect on headshot criticals.
+                                Headshot boosts from Witch Hunter Captain (passive 25% and 50% from talent) and from Wayfarer (50% from talent) modify the X position bonus for the boost curve from headshotting. However, headshot criticals already max the X value at 1 (0.5 + 0.5) so unless the target is monster or supearmored (0.25 + 0.5) headshot boost has no effect on headshot criticals. Since headshot boost increases the raw bonus from headshots having a 0.25 bonus vs monsters and armored also effectively halves the effect of headshot boost.
+                            </p>
+                            <p>
+                                For example, an attack deals 40 damage on a normal hit and 80 damage on a headshot.
+                            </p>
+                            <p class="indent-1 math">
+                                80 - 40
+                            </p>
+                            <p class="math">
+                                = <span class="math-highlight">40</span>
+                            </p>
+                            <p>
+                                At a glance we can assume that the boost curve is linear and the boost curve multiplier is 2 since the extra damage is equal to the base damage on a headshot. If we wanted to calculate 25% headshot boost we first plug it into the headshot bonus (0.5).
+                            </p>
+                            <p class="indent-1 math">
+                                0.5 + (0.5 * 0.25)
+                            </p>
+                            <p class="math">
+                                = <span class="math-highlight">0.625</span>
+                            </p>
+                            <p>
+                                Now we get Y (base extra damage multiplier) from plugging in X (0.625). Since it's linear then Y will mirror X so 0.625 from X will return a Y of 0.625. Now we add the boost curve multiplier to our result.
+                            </p>
+                            <p class="indent-1 math">
+                                <span class="math-highlight">0.625</span> * 2
+                            </p>
+                            <p class="math">
+                                = <span class="math-highlight">1.25</span>
+                            </p>
+                            <p>
+                                Now we plug in our extra damage multiplier into our headshot calculation by taking the base damage and adding base damage * extra damage multiplier.
+                            </p>
+                            <p class="indent-1 math">
+                                40 + (40 * <span class="math-highlight">1.25</span>)
+                            </p>
+                            <p class="math">
+                                = 40 + 50
+                            </p>
+                            <p class="math">
+                                = <span class="math-correct">90</span>
+                            </p>
+                            <p>
+                                This example used a linear boost curve and a boost curve multiplier of 2 to <b>greatly</b> simplify the math but in practice almost every damage profile is going to use non-linear boost curves and a default boost curve multiplier of 1. 
+                            </p>
+                            <p>
+                                For example, Elf's 2H Sword has a ninja boost curve on heavy 1. For the ninja boost curve a headshot returns a value of 0.7, and a headshot bonus of 50% (Arcane Bodkins) only increases the return from the curve to a value of 0.85. Multiplying the return by the boost curve multiplier (1.5) for increases those values to 1.05 and 1.275 respectively. Lets plug those values in for Elf's 2H Sword Heavy 1.
+                            </p>
+                            <p class="indent-1 math">
+                                25.5 + (25.5 * (0.7 * 1.5))
+                            </p>
+                            <p class="math">
+                                = 25.5 + (25.5 * 1.05)
+                            </p>
+                            <p class="math">
+                                = 25.5 + 26.75
+                            </p>
+                            <p class="math">
+                                = <span class="math-correct">52.25</span>
+                            </p>
+                            <p class="indent-1 math" style="margin-top:4px;">
+                                25.5 + (25.5 * (0.85 * 1.5))
+                            </p>
+                            <p class="math">
+                                = 25.5 + (25.5 * 1.275)
+                            </p>
+                            <p class="math">
+                                = 25.5 + 32.5
+                            </p>
+                            <p class="math">
+                                = <span class="math-correct">58</span>
+                            </p>
+                            <p class="indent-1 math" style="margin-top:4px;">
+                                <span class="math-correct">58</span> / <span class="math-correct">52.25</span>
+                            </p>
+                            <p class="math">
+                                = ~<span class="math-correct">11%</span>
+                            </p>
+                            <p>
+                                A 50% headshot boost for that attack only increased the <b>headshot</b> damage by ~11%. Headshot bonus is very dependant on the weapon's boost curve stats. For example, Dual Dagger has a linear boost curve and a boost curve multiplier of 2 making it very good for headshot bonus as opposed to Elf's 2H Sword.
                             </p>
                             <br>
                             <p>
-                                Critical power boost increases the extra damage calculated from the boost curve. This includes all of the extra damage from headshot criticals.
+                                Critical power boost on the other hand directly increases the extra damage and has nothing to do with the boost curve. That means that if we know exactly how much extra damage is dealt on a critical and headshot critical then calculating the damage increase from critical power boost is as simple as extra damage * crit boost.
                             </p>
                             <p>
                                 For example, an attack deals 40 damage on a normal hit and 80 damage on a critical hit.
@@ -430,54 +534,56 @@
                                 80 - 40
                             </p>
                             <p class="math">
-                                = <span style="color:#FFF;">40</span>
+                                = <span class="math-highlight">40</span>
                             </p>
-                            <p></p>
+                            <p>
+                                And then we plug in 20% critical power boost in.
+                            </p>
                             <p class="indent-1 math">
-                                40 + (<span style="color:#FFF;">40</span> * 1.2)
+                                40 + (<span class="math-highlight">40</span> * (1 + (.2))
                             </p>
                             <p class="math">
                                 = 40 + 48
                             </p>
                             <p class="math">
-                                = 88
+                                = <span class="math-correct">88</span>
                             </p>
                             <p>
-                                While this works for most damage profiles, some actually have a different armor multiplier for the raw damage on a critical hit vs a normal hit that is independant of the extra damage from critical hits. If we take our existing example and increase the critical armor multiplier over the base armor multiplier by 50% we'd get 40 damage on a normal hit and 120 damage on a critical hit. Since the raw damage is actually 50% higher on a crit this would be the correct way to calculate the extra damage.
+                                While this works for most damage profiles, some actually have a different armor multiplier for the raw damage on a critical hit vs a normal hit that is independant of the extra damage from critical hits. If we take our existing example and increase the critical armor multiplier over the base armor multiplier by 50% we'd get 40 damage on a normal hit and 120 damage on a critical hit. Since the raw damage is actually 50% higher on the critical hit this would be the correct way to calculate the extra damage.
                             </p>
                             <p class="indent-1 math">
-                                60 + (60 * 1.2)
+                                60 + (60 * (1 + (.2))
                             </p>
                             <p class="math">
                                 = 60 + 72
                             </p>
                             <p class="math">
-                                = 132
+                                = <span class="math-correct">132</span>
                             </p>
                             <p>
-                                If we just tried to subtract the base damage from the critical damage to get the extra damage and multiply that by the critical power boost amount we would get incorrect values if the damage profile has a different critical armor multiplier than base armor multiplier.
+                                If we just try subtracting the base damage from the critical damage to get the extra damage and multipling that by the critical power boost amount we would get incorrect values if the damage profile has a different critical armor multiplier than its base armor multiplier.
                             </p>
                             <p class="indent-1 math">
                                 120 - 40
                             </p>
                             <p class="math">
-                                = <span style="color:#FFF;">80</span>
+                                = <span class="math-highlight">80</span>
                             </p>
                             <p></p>
                             <p class="indent-1 math">
-                                40 + (<span style="color:#FFF;">80</span> * 1.2)
+                                40 + (<span class="math-highlight">80</span> * (1 + (.2))
                             </p>
                             <p class="math">
                                 = 40 + 96
                             </p>
                             <p class="math">
-                                = 136
+                                = <span class="math-incorrect">136</span>
                             </p>
                             <p class="math">
-                                <span style="color:#E00;">!</span>= 132
+                                <span class="math-incorrect">!</span>= <span class="math-correct">132</span>
                             </p>
                             <p>
-                                This makes it difficult to calculate damage with critical power boost unless we had access to the damage profile used.
+                                This makes it difficult to calculate damage with critical power boost by hand unless we cross reference with other resources.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -502,30 +608,31 @@
                             </div>
                         </div>
                         <div class="resource-item">
-                            <a href="https://www.reddit.com/r/Vermintide/comments/90qola/a_list_of_everything_you_wish_fatshark_told_you/">A List of Everything You Wish Fatshark Told You</a>
+                            <a class="lighter-link" href="https://www.reddit.com/r/Vermintide/comments/90qola/a_list_of_everything_you_wish_fatshark_told_you/">A List of Everything You Wish Fatshark Told You</a>
                             <p>
                                 Maintained by OrangeChris. Explains a lot of basic and/or hidden mechanics in Vermintide 2.
                             </p>
-                            <a href="https://docs.google.com/spreadsheets/d/1_KihiXcEb1nP355Nwj0aQ3SszKwqrzQ6ra63CWPQq4I/edit?usp=sharing">Spreadsheet Breakpoint Calculator</a>
+                            <a class="lighter-link" href="https://docs.google.com/spreadsheets/d/1_KihiXcEb1nP355Nwj0aQ3SszKwqrzQ6ra63CWPQq4I/edit?usp=sharing">Spreadsheet Breakpoint Calculator</a>
                             <p>
                                 Maintained by OrangeChris. Forked from Lasmrah's original breakpoint calculator.
                             </p>
-                            <a href="https://builds.verminti.de/">Verminbuilds</a>
+                            <a class="lighter-link" href="https://builds.verminti.de/">Verminbuilds</a>
                             <p>
                                 Maintained by absolute_ly and community. Created by bfir3.
                             </p>
-                            <a href="https://docs.google.com/spreadsheets/d/1PiWoQOH9LeZVlbHv5GvTaToet5wKW6AdpKDf35StcBI/edit#gid=1134474477">Mobs' HP (1.04)</a>
+                            <a class="lighter-link" href="https://docs.google.com/spreadsheets/d/1PiWoQOH9LeZVlbHv5GvTaToet5wKW6AdpKDf35StcBI/edit#gid=1134474477">Mobs' HP (1.04)</a>
                             <p>
                                 Created by UnShamed. Excluding the Troll (hp has since been increased by 20% for all difficulties) it is still accurate.
+                            </p>
+                            <a class="lighter-link" href="https://github.com/Aussiemon/Vermintide-2-Source-Code/">Vermintide 2 Source Code</a>
+                            <p>
+                                Maintained by Aussiemon.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            prepPage();
-        </script>
         <template id="TEMPLATE-CHAIN">
             <div class="chain-attack-select js-button">
                 <select class="chain-attack-dropdown js-input">
@@ -533,5 +640,9 @@
                 </select>
             </div>
         </template>
+        <script>
+            prepPage();
+        </script>
     </body>
+    <script src="data.js?129" onload="verminted.finished_loading = true;"></script>
 </html>
