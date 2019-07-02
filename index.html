@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <meta name="description" content="Vermintools lets users explore damage breakpoints, damage per second, and more for Vermintide 2.">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?129">
-        <script src="frontend.js?129"></script>
+        <link rel="stylesheet" href="format.css?133">
+        <script src="frontend.js?133"></script>
     </head>
     <body>
         <div style="display: none">
@@ -74,12 +74,8 @@
                     <option selected disabled hidden>legend</option>
                 </select>
                 <input class="toggle-hbfs" type="checkbox">
-                <select class="select-platform js-input">
-                    <option value="pc" selected>PC</option>
-                    <option value="console">Console</option>
-                </select>
                 <input class="select-file hide" type="file">
-                <div class="build-number">129-3/6/2019</div>
+                <div id="build" class="build-number">133-2/7/2019</div>
             </div>
             <div class="header-dummy"></div>
             <div class="sidebar">
@@ -230,7 +226,7 @@
                                 Developed in native JavaScript, Vermintools uses ingame formulas for calculating values. With only a handful of exceptions all of the data used is parsed directly from Vermintide 2.
                             </p>
                             <p>
-                                Vermintools was created and is maintained by ManShanko. He can be reached at <a class="lighter-link" href="https://www.reddit.com/user/ManShanko">u/ManShanko</a> on reddit or ManShanko#9249 on Discord.
+                                Vermintools was created and is maintained by ManShanko. He can be reached at <a class="lighter-link" href="https://www.reddit.com/user/ManShanko">u/ManShanko</a> on Reddit or ManShanko#9249 on Discord.
                             </p>
                         </div>
                     </div>
@@ -245,7 +241,7 @@
                                 Breakpoint
                             </div>
                             <div class="breakpoint-examples resource-example">
-                                <div class="infantry neither" title="Normal hit with 1h_axe against a fanatic">
+                                <div class="infantry neither" title="normal hit with 1h_axe against a fanatic">
                                     2 (2%)
                                 </div>
                                 <div class="infantry headshot" title="headshot with 1h_axe against a fanatic">
@@ -262,7 +258,22 @@
                                 Breakpoint (BP) is the power needed to lower the amount of hits necessary to kill the target.
                             </p>
                             <p>
-                                For example, 1h_axe takes 2 hits to kill a fanatic on Legend. With 2% power vs fanatics the amount of hits needed is lowered to only 1, effectively doubling fanatic killspeed for non headshots/critcals.
+                                Take the breakpoint table above for example. This table represents the first fanatic hit for a 1H Axe light attack. The columns, left to right, represent:
+                            </p>
+                            <p class="indent-1">
+                                1. normal
+                            </p>
+                            <p class="indent-1">
+                                2. headshot
+                            </p>
+                            <p class="indent-1">
+                                3. critical
+                            </p>
+                            <p class="indent-1">
+                                4. headshot critical
+                            </p>
+                            <p>
+                                Looking at the normal hit breakpoint we see 2 (2%) which tells us that it currently takes 2 normal hits to kill a fanatic and we need (2%) power vs fanatics to reach the next breakpoint. By reaching the next breakpoint we lower the amount of normal hits for a 1H Axe light attack to kill a fanatic from 2 to 1 effectively doubling fanatic kill speed assuming no headshots/criticals.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -394,10 +405,25 @@
                                 Damage profiles can have different damage scaling and armor multipliers for each target hit (i.e. first target hit, second target hit, third target hit) in an attack. While some attacks can't cleave two stormvermin, it could be possible to hit a slave rat and then a stormvermin. Although since the stormvermin is the second target hit the attack it would deal less damage than if the stormvermin was the first target.
                             </p>
                             <p>
-                                Some damage profiles use default target for 1st target hit and a target override for 2nd. This causes any target after the 2nd to take the same amount of damage as the 1st target. For example, Falchion light_attack_down "benefits" from this against slave rats with base damage cleave, and a lot of other attacks will "benefit" from it with enough cleave increase. This is likely because of inherited values from Vermintide 1 not properly adapted to Vermintide 2.
+                                Some damage profiles use default target for 1st target hit and a target override for 2nd. This causes any target after the 2nd to take the same amount of damage as the 1st target. For example, Falchion light_attack_down "benefits" from this against slave rats with base damage cleave, and a lot of other attacks will "benefit" from it with enough cleave increase. I'd imagine this is because of how the damage profiles are were adapted from Vermintide 1 to Vermintide 2 and the introduction of power level.
                             </p>
                             <p>
                                 Damage profiles have up to 4 target overrides and a default_target defined. That means no damage profile has more than 5 unique damage values for targets hit. Because of this there is only up to 5 breakpoint rows with all excess targets simplified to "+X". Any excess targets will use the same breakpoint as the 5th target.
+                            </p>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Damage Calculation
+                            </div>
+                            <p>
+                                Vermintide 2 damage calculation is recreated in Vermintools using JavaScript.
+                            </p>
+                            <p>
+                                This includes the difficulty softcap for power level, power increases (e.g. power vs, generic power, etc), headshot damage boosts, critical power boosts, strength potion, and power boosts.
+                            </p>
+                            <p>
+                                Power increases are the only linear scaling damage increase. All the other types scale non-linearly and/or scale differently depending on the weapons' attacks' damage profile.
                             </p>
                         </div>
                         <div class="resource-item">
@@ -405,10 +431,10 @@
                                 Damage Calculation (power vs)
                             </div>
                             <p>
-                                All damage is calculated in JavaScript using functions based on Vermintide 2's Lua damage functions.
+                                All sources of power increases are linear damage increases to total damage output.
                             </p>
                             <p>
-                                This includes the difficulty softcap for power level, headshot damage boosts, critical power boosts, and strength potion. All different types of power vs are multiplied against each other. The order can be simplified as such:
+                                All different types of power vs are multiplied against each other. The order can be simplified as such:
                             </p>
                             <br>
                             <p>
@@ -416,7 +442,7 @@
                             </p>
                             <br>
                             <p>
-                                For example, a 1h_axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, Last Resort talent (25% generic power) and 5 stacks of Barrage (25% generic power), and Shrapnel active (20%) against a stormvermin would do:
+                                For example, a 1H Axe normal light attack as ranger veteran with 10% power vs armored, 20% power vs skaven, Last Resort talent (25% generic power) and 5 stacks of Barrage (25% generic power), and Shrapnel active (20%) against a stormvermin would do:
                             </p>
                             <p class="indent-1 math">
                                ~9.2 * (1 + (.1)) * (1 + (.2)) * (1 + (0)) * (1 + (.25 + .25)) * (1 + (.2))
@@ -430,6 +456,9 @@
                             <p class="math">
                                 = ~21.86 which rounds to <span class="math-correct">21.75</span> damage
                             </p>
+                            <p>
+                                Power vs armor works against the <b>base</b> armor of a mob. For example, power vs infantry increases damage dealt against a chaos mauler, body and head, despite the head being superarmor. On the other hand power vs armor does not increase damage against a chaos mauler.
+                            </p>
                         </div>
                         <div class="resource-item">
                             <div class="resource-item-title">
@@ -439,7 +468,7 @@
                                 Headshot boost and critical power boost modifiers interact with damage differently than power vs modifiers.
                             </p>
                             <p>
-                                Each damage profile for an attack has a boost curve that defines a boost curve. The boost curve's Y cordinate functions as the multiplier for the extra damage from headshots and/or criticals. The Y position is normally a range from 0 to 1 unless a boost curve multiplier defined in the damage profile overrides the maximum value. The X position is a range from 0 to 1. Headshots and criticals each boost X by 0.5. If the target is superarmored or a monster than headshots only add 0.25 to X.
+                                Each damage profile for an attack has a boost curve that defines the extra damage from headshots and critical hits. The boost curve's Y cordinate functions as the multiplier for the extra damage from headshots and/or criticals. The Y position is normally a range from 0 to 1 unless a boost curve multiplier defined in the damage profile overrides the maximum value. The X position is a range from 0 to 1. Headshots and criticals each boost X by 0.5. If the target is a monster than headshots only add 0.25 to X.
                             </p>
                             <br>
                             <p>
@@ -521,7 +550,7 @@
                                 = ~<span class="math-correct">11%</span>
                             </p>
                             <p>
-                                A 50% headshot boost for that attack only increased the <b>headshot</b> damage by ~11%. Headshot bonus is very dependant on the weapon's boost curve stats. For example, Dual Dagger has a linear boost curve and a boost curve multiplier of 2 making it very good for headshot bonus as opposed to Elf's 2H Sword.
+                                A 50% headshot boost for that attack only increased the <b>headshot</b> damage by ~11%. Headshot bonus is very dependant on the weapon's boost curve stats. For example, Dual Daggers has a linear boost curve and a boost curve multiplier of 2 making it very good for headshot bonus as opposed to Elf's 2H Sword.
                             </p>
                             <br>
                             <p>
@@ -588,6 +617,68 @@
                         </div>
                         <div class="resource-item">
                             <div class="resource-item-title">
+                                Damage Calculation (boss armor)
+                            </div>
+                            <p>
+                                Vermintide 2 bosses have boss armor that affects the base damage, headshot damage, power boost damage, and backstab damage before they're added together.
+                            </p>
+                            <p>
+                                While it could be said that fleshy monsters have ~55% damage reduction, it'd be more accurate to say that they take 55% reduced base damage, 50% reduced headshot damage, and 50% reduced power boost damage. This occurs in the final step before the damage sources are added together.
+                            </p>
+                            <p>
+                                Vermintools doesn't have full support for bosses currently, but does have fleshy monster support for Shade ultimate specifically. It can be reached by appending <a class="lighter-link appended-link" href="?shadeult">?shadeult</a> to this website's link. Note that all monster armor is calculated as if it was boss armor (i.e. gets the damage reduction) and that Shade ultimate is a guarenteed critical hit. As such just ignore non-crit values.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Damage Snapshotting
+                            </div>
+                            <p>
+                                Damage does not snapshot in Vermintide 2. Damage and sources of damage increase are calculated when it's dealt.
+                            </p>
+                            <p>
+                                This affects any form of delayed damage. For example if 2 shots are fired from a Hagbane with enough power vs to kill a special and then the active weapon is switched to one with less/no power vs against that special rolled on it, it would decrease the damage of the dots' ticks that occur while the weapon with less power vs is active. This is because properties in Vermintide 2 are applied as global buffs, and weapons' properties are only applied if that weapon is active (i.e. currently wielded). This affects any source of delayed damage such as projectiles, dots, and even ultimate skills.
+                            </p>
+                            <p>
+                                Vermintools does not currently handle delayed damage <b>and</b> active weapons.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                On Hit Effects
+                            </div>
+                            <p>
+                                In Vermintide 2 buffs/debuffs are applied before damage is calculated.
+                            </p>
+                            <p>
+                                This means that Slayer's passive, 20% increased damage taken debuff on crits, and others will affect the damage of the hit that procced it. Notable exception is Barrage due to it's unique buff application. The Barrage trait on hit applies a debuff that when that mob is hit again gives a stack of Barrage. That means that even shotgun bash (infinite "cleave") would need to hit the same mob/mobs at least 2 times to gain Barrage stacks.
+                            </p>
+                            <p>
+                                Vermintools does not currently emulate on hit procs.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Dots
+                            </div>
+                            <p>
+                                Dots in Vermintide 2 are "buffs" applied to a mob that deals damage every tick for it's duration.
+                            </p>
+                            <p>
+                                Poison and bleed dots are applied on hits that deal damage while burning dots are always applied on hits.
+                            </p>
+                            <p>
+                                A dot has a defined tick rate, duration, max stacks, and damage profile. Some dots use the same damage profile. When a dot is applied it inherits the attack's scaled power multiplier. This only affects charged attacks like Fireball Staff and Conflag Staff.
+                            </p>
+                            <p>
+                                Dot ticks have a variance range of -25% to +25% from the base tick rate. The variance is calculated per tick. This causes dots to have inconsistencies with total damage dealt due to losing a tick or more rarely gaining a tick.
+                            </p>
+                            <p>
+                                Vermintools does not currently handle dot tick variance or the minimum bleed damage against superarmored.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
                                 Attack Speed
                             </div>
                             <p>
@@ -598,6 +689,17 @@
                             </p>
                             <p>
                                 Combos ending with a animation cancel are hard coded to add a flat .05s (3 frames for 60hz) to the combo speed to simulate the delay from QQ cancel. This can be partially circumvented by repeating the combo multiple times or completely circumvented by ending the combo with a different weapon's action.
+                            </p>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-item-title">
+                                Stagger
+                            </div>
+                            <p>
+                                Stagger calculation is done on hit against a mob. Mobs can have extra stagger resistance for some attacks.
+                            </p>
+                            <p>
+                                Stagger benefits from a lot of the same increases as damage with the notable exception that critical power boost affects headshots, critical hits, and headshot criticals as opposed to just critical hits and headshot criticals.
                             </p>
                         </div>
                     </div>
@@ -630,6 +732,18 @@
                             </p>
                         </div>
                     </div>
+                    <div class="resource-tab external-resources-tab">
+                        <div class="resource-title-wrapper">
+                            <div class="resource-title js-button">
+                                Mob HP
+                            </div>
+                        </div>
+                        <div class="resource-item mob-hp-list">
+                            <p>
+                                recruit&#09;/&#09;veteran&#09;/&#09;champion&#09;/&#09;legend&#09;/&#09;cataclysm&#09;/&#09;cata_2&#09;/&#09;cata_3
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -644,5 +758,5 @@
             prepPage();
         </script>
     </body>
-    <script src="data.js?129" onload="verminted.finished_loading = true;"></script>
+    <script src="data.js?133" onload="verminted.finished_loading = true;"></script>
 </html>

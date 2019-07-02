@@ -44,7 +44,7 @@ body {
 .tooltip-text {
     position: relative;
     word-wrap: normal;
-    max-width: 280px;
+    max-width: 360px;
     background-image: linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
     background-image: -moz-linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
     border: 2px solid black;
@@ -73,6 +73,16 @@ body {
     height: 20px;
     line-height: 48px;
     padding: 0;
+}
+
+#timeline {
+    position: absolute;
+    z-index: 10;
+}
+#timeline-mouse {
+    position: absolute;
+    background: #555;
+    z-index: 11;
 }
 
 .toggle-hbfs {
@@ -354,7 +364,7 @@ body {
     width: 180px;
     margin: 2px;
     padding: 2px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
 }
 
@@ -458,7 +468,7 @@ body {
     border: 0 solid black;
     border-width: 2px 1px 0 1px;
     background: #888;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .combo-info {
@@ -910,7 +920,7 @@ body {
 }
 
 .hit-type-examples > p:not(.math) {
-    margin: 0;
+    margin: 4px;
     margin-bottom: 4px;
 }
 .hit-type-examples > p > .normal-hit {
@@ -1018,7 +1028,10 @@ body {
 
     .select-page {
         flex-basis: 30%;
+        font-size: 15px;
         text-align: center;
+        padding-left: 1px;
+        padding-right: 1px;
     }
 
     .chain-attack-container {
