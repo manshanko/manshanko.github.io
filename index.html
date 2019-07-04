@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, user-scalable=0">
         <meta name="description" content="Vermintools lets users explore damage breakpoints, damage per second, and more for Vermintide 2.">
         <title>Vermintools</title>
-        <link rel="stylesheet" href="format.css?140">
-        <script src="frontend.js?140"></script>
+        <link rel="stylesheet" href="format.css?142">
+        <script src="frontend.js?142"></script>
     </head>
     <body>
         <div style="display: none">
@@ -69,13 +69,16 @@
                 <div class="select-page js-button" data-slot="attack-page">Attack Combo</div>
                 <div class="select-page js-button" data-slot="weapon-page">Weapon Stats</div>
                 <div class="select-page js-button" data-slot="resource-page">Resources</div>
-                <input class="input-power-level js-input" type="number" step="1" min="15" max="600" value="600">
+                <input class="input-power-level js-input" type="number" step="1" min="15" max="600">
                 <select class="select-difficulty js-input">
                     <option selected disabled hidden>legend</option>
                 </select>
                 <input class="toggle-hbfs" type="checkbox">
                 <input class="select-file hide" type="file">
-                <div id="build" class="build-number">140-3/7/2019</div>
+                <select class="select-language js-input">
+                    <option class="default-language" selected disabled hidden></option>
+                </select>
+                <div id="build" class="build-number">142-4/7/2019</div>
             </div>
             <div class="header-dummy"></div>
             <div class="sidebar">
@@ -758,5 +761,5 @@
             prepPage();
         </script>
     </body>
-    <script src="data.js?140" onload="verminted.finished_loading = true;"></script>
+    <script src="data.js?142" onload="verminted.finished_loading = true;"></script>
 </html>

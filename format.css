@@ -45,7 +45,9 @@ body {
     position: relative;
     word-wrap: normal;
     max-width: 360px;
+    background-image: #EEA;
     background-image: linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
+    background-image: -ms-linear-gradient(top left, #EEE, #EEA);
     background-image: -moz-linear-gradient(135deg, #E66 6px, #AAA 6px, 9px, #EEE 9px, #EEA 100%);
     border: 2px solid black;
     border-radius: 2px 6px 6px 6px;
@@ -138,7 +140,7 @@ body {
     margin: 4px;
 }
 .header > input,
-.header > select {
+.header > select:not(.select-language) {
     margin: auto 4px;
 }
 
@@ -159,9 +161,15 @@ body {
     background: #222;
 }
 
+.select-language {
+    margin: auto;
+    margin-right: 0;
+    min-width: 36px;
+}
+
 .build-number {
     background: #EEE6;
-    margin: auto 4px auto auto;
+    margin: auto 4px auto 8px;
     padding: 4px;
     border-radius: 2px;
 }
@@ -178,6 +186,7 @@ body {
 }
 
 .select-difficulty {
+    min-width: 99px;
 }
 
 .select-platform {
@@ -789,24 +798,36 @@ body {
     grid-column: 4;
 }
 
+/*
+    #DFBC89AA;
+    #CF4C39AA;
+    #4FBFC9AA;
+    #4FCC49AA;
+    #DF5CD9AA;
+    #8883, #FFF1
+    #8803, #FF01
+    #8003, #F001
+    #0083, #00F1
+*/
+
 .infantry {
-    background: #DFBC89AA;
+    background: rgba(223, 188, 137, 170);
 }
 
 .armored {
-    background: #CF4C39AA;
+    background: rgba(207, 76, 57, 170);
 }
 
 .monster {
-    background: #4FBFC9AA;
+    background: rgba(79, 191, 201, 170);
 }
 
 .berserker {
-    background: #4FCC49AA;
+    background: rgba(79, 204, 73, 170);
 }
 
 .superarmored {
-    background: #DF5CD9AA;
+    background: rgba(223, 92, 217, 170);
 }
 
 .neither,
@@ -822,23 +843,19 @@ body {
 }
 
 .neither {
-    background-image: linear-gradient(-45deg, #8883, #FFF1);
-    background-image: -moz-linear-gradient(-45deg, #FFF3, #FFF1);
+    background-image: linear-gradient(-45deg, rgba(128, 128, 128, 0.1875), rgba(240, 240, 240, 0.0625));
 }
 
 .headshot {
-    background-image: linear-gradient(-45deg, #8803, #FF01);
-    background-image: -moz-linear-gradient(-45deg, #FF03, #FF01);
+    background-image: linear-gradient(-45deg, rgba(128, 128, 0, 0.1875), rgba(240, 240, 0, 0.0625));
 }
 
 .critical {
-    background-image: linear-gradient(-45deg, #8003, #F001);
-    background-image: -moz-linear-gradient(-45deg, #F003, #F001);
+    background-image: linear-gradient(-45deg, rgba(128, 0, 0, 0.1875), rgba(240, 0, 0, 0.0625));
 }
 
 .both {
-    background-image: linear-gradient(-45deg, #0083, #00F1);
-    background-image: -moz-linear-gradient(-45deg, #00A3, #00F1);
+    background-image: linear-gradient(-45deg, rgba(0, 0, 128, 0.1875), rgba(0, 0, 240, 0.0625));
 }
 
 .damage-change {
